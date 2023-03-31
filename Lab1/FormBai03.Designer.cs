@@ -42,30 +42,33 @@
             button1.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             button1.Location = new Point(453, 27);
             button1.Name = "button1";
-            button1.Size = new Size(94, 29);
+            button1.Size = new Size(94, 32);
             button1.TabIndex = 0;
             button1.Text = "Đọc";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // button2
             // 
             button2.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             button2.Location = new Point(453, 119);
             button2.Name = "button2";
-            button2.Size = new Size(94, 29);
+            button2.Size = new Size(94, 36);
             button2.TabIndex = 0;
             button2.Text = "Xóa";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // button3
             // 
             button3.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             button3.Location = new Point(453, 206);
             button3.Name = "button3";
-            button3.Size = new Size(94, 29);
+            button3.Size = new Size(94, 31);
             button3.TabIndex = 0;
             button3.Text = "Thoát";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // label1
             // 
@@ -101,6 +104,7 @@
             textBox2.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             textBox2.Location = new Point(12, 167);
             textBox2.Name = "textBox2";
+            textBox2.ReadOnly = true;
             textBox2.Size = new Size(125, 34);
             textBox2.TabIndex = 2;
             // 

@@ -41,6 +41,7 @@ namespace Lab1
             catch
             {
                 MessageBox.Show("Yêu cầu nhập số nguyên!");
+                textBox1.Text = string.Empty;
                 return;
             }
         }
@@ -48,6 +49,11 @@ namespace Lab1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if(textBox1.Text ==string.Empty||textBox2.Text==string.Empty)
+            {
+                MessageBox.Show("Yêu cầu nhập số nguyên!");
+                return;
+            }
             int num1, num2;
             long sum = 0;
             num1 = int.Parse(textBox1.Text.Trim());
@@ -70,6 +76,7 @@ namespace Lab1
             catch
             {
                 MessageBox.Show("Yêu cầu nhập số nguyên!");
+                textBox2.Text = string.Empty;
                 return;
             }
         }

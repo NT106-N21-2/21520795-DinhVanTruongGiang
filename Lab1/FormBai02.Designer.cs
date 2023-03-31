@@ -151,7 +151,6 @@
             label5.Size = new Size(119, 26);
             label5.TabIndex = 1;
             label5.Text = "Số lớn nhất";
-            //label5.Click += label5_Click;
             // 
             // textBox4
             // 

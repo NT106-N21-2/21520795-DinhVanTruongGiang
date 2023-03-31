@@ -28,7 +28,49 @@ namespace Lab1
 
         private void button3_Click(object sender, EventArgs e)
         {
+            FormBai03 nf = new FormBai03();
+            nf.ShowDialog();
+            //Close();
+        }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+            FormBai04 nf = new FormBai04();
+            nf.ShowDialog();
+            //Close();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            FormBai05 nf = new FormBai05();
+            nf.ShowDialog();
+            //Close();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            FormBai06 nf = new FormBai06();
+            nf.ShowDialog();
+            //Close();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            FormBai07 nf = new FormBai07();
+            nf.ShowDialog();
+            //Close();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            //FormBai08 nf = new FormBai08();
+            //nf.ShowDialog();
+            ////Close();
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

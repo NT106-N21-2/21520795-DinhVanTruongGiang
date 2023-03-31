@@ -24,6 +24,11 @@ namespace Lab1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (textBox1.Text == string.Empty || textBox2.Text == string.Empty||textBox3.Text==string.Empty)
+            {
+                MessageBox.Show("Yêu cầu nhập số nguyên!");
+                return;
+            }
             float num1, num2, num3;
             num1 = float.Parse(textBox1.Text.Trim());
             num2 = float.Parse(textBox2.Text.Trim());
