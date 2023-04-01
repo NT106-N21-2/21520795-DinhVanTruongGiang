@@ -29,6 +29,7 @@ namespace Lab1
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
+            //Kiểm tra textbox
             try
             {
                 string inputstring = textBox1.Text.Trim();
@@ -49,6 +50,7 @@ namespace Lab1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //Kiểm tra input
             if(textBox1.Text ==string.Empty||textBox2.Text==string.Empty)
             {
                 MessageBox.Show("Yêu cầu nhập số nguyên!");
@@ -64,6 +66,7 @@ namespace Lab1
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
+            //Kiểm tra textbox
             try
             {
                 string inputstring = textBox2.Text.Trim();

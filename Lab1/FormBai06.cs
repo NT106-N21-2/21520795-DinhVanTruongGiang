@@ -20,6 +20,7 @@ namespace Lab1
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
+            //Kiểm tra textbox
             try
             {
                 if (textBox2.Text.Length > 0)
@@ -41,6 +42,7 @@ namespace Lab1
         }
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
+            //Kiểm tra textbox
             try
             {
                 if (textBox1.Text.Length > 0)

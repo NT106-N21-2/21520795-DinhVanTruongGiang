@@ -43,6 +43,7 @@ namespace Lab1
             }
             int num = int.Parse(textBox1.Text.Trim());
             string s = string.Empty;
+            //Xét số vừa nhập
             switch (num)
             {
                 case 0:
@@ -80,6 +81,7 @@ namespace Lab1
         }
         private void button2_Click(object sender, EventArgs e)
         {
+            //Xóa các textbox
             textBox1.Text = string.Empty;
             textBox2.Text = string.Empty;
         }

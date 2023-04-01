@@ -63,9 +63,9 @@ namespace Lab1
 
         private void button8_Click(object sender, EventArgs e)
         {
-            //FormBai08 nf = new FormBai08();
-            //nf.ShowDialog();
-            ////Close();
+            FormBai8 nf = new FormBai8();
+            nf.ShowDialog();
+            //Close();
         }
 
         private void button9_Click(object sender, EventArgs e)

@@ -24,6 +24,7 @@ namespace Lab1
                 MessageBox.Show("Yêu cầu chọn loại xe!");
                 return;
             }
+            //Tính quãng đường và giá tiền
             double dungtich = double.Parse(textBox2.Text);
             double tigia = double.Parse(textBox4.Text);
             int thanhtien = (int)Math.Round(dungtich * tigia);

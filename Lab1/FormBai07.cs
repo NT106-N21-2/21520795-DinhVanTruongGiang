@@ -36,22 +36,25 @@ namespace Lab1
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter)//Khi bấm phím enter
             {
                 byte Prefix = 0;
-                string[] input = textBox1.Text.Split('/');
+                string[] input = textBox1.Text.Split('/');//Tách textbox thành 2 phần bằng "/"
                 IPAddress ipAddress;
 
+                //Kiếm tra IP có hợp lệ?
                 if (!IPAddress.TryParse(input[0], out ipAddress))
                 {
                     MessageBox.Show("Địa chỉ IP không hợp lệ");
                     return;
                 }
+                //Kiểm tra Prefix có hợp lệ?
                 if (!byte.TryParse(input[1], out Prefix)||Prefix > 30 || Prefix < 0)
                 {
                     MessageBox.Show("Số prefix không hợp lệ");
                     return;
                 }
+                //Số mạng con có thể chia = 2^(30-prefix)
                 textBox2.Text = Math.Pow(2, 30 - Prefix).ToString();
             }
         }
@@ -70,9 +73,10 @@ namespace Lab1
             //Số subnet
             int SoSubnet = int.Parse(textBox3.Text);
             //Tạo mảng IPaddress
-            string[] input = textBox1.Text.Split('/');
-            string[] ip = input[0].Split('.');
+            string[] input = textBox1.Text.Split('/');//Tách chuỗi thành chuỗi ip và prefix
+            string[] ip = input[0].Split('.');//Tách chuỗi ip thành 4 phần
             int k = 0;
+            //Tạo array ipaddress lưu trữ 4 phần trên
             int[] IPAdd = new int[4];
             foreach (string s in ip)
             {
@@ -102,18 +106,22 @@ namespace Lab1
             for (int i = 1; i <= Math.Pow(2, SoBitMuon); i++)
             {
                 //Tính các giá trị
+                //ĐC mạng 
                 net = IPAdd[0].ToString() + '.' + IPAdd[1].ToString() + '.' + IPAdd[2].ToString() + '.' + IPAdd[3].ToString() + '/' + (SoBitMuon + Prefix).ToString();
+                //Đc đầu = ĐC mạng + 1 (octect 4)
                 firstIP = IPAdd[0].ToString() + '.' + IPAdd[1].ToString() + '.' + IPAdd[2].ToString() + '.' + (IPAdd[3] + 1).ToString();
+                //ĐC cuối = Đc mạng + bước nhảy - 2
                 IPAdd[3] += BuocNhay[3] - 2;
                 IPAdd[2] += (int)((Prefix + SoBitMuon) / 8) <= 2 ? BuocNhay[2] - 1 : 0;
                 IPAdd[1] += (int)((Prefix + SoBitMuon) / 8) <= 1 ? BuocNhay[1] - 1 : 0;
                 IPAdd[0] += (int)((Prefix + SoBitMuon) / 8) <= 0 ? BuocNhay[0] - 1 : 0;
                 lastIP = IPAdd[0].ToString() + '.' + IPAdd[1].ToString() + '.' + IPAdd[2].ToString() + '.' + IPAdd[3].ToString();
+                //Broadcast = ĐC cuối +1
                 broadcast = IPAdd[0].ToString() + '.' + IPAdd[1].ToString() + '.' + IPAdd[2].ToString() + '.' + (IPAdd[3] + 1).ToString();
                 //add giá trị vào table
                 table.Rows.Add(i, net, firstIP, lastIP, broadcast);
 
-                //Cập nhật giá trị
+                //Cập nhật giá trị (+1 vào octect cuối cùng để nhảy sang mạng tiếp theo)
                 int flag = (int)((IPAdd[3] + 2) / 256);
                 IPAdd[3] = (IPAdd[3] + 2) % 256;
                 
@@ -128,6 +136,7 @@ namespace Lab1
                 IPAdd[0] += flag; //(int)((Prefix + SoBitMuon) / 8) <= 0 ? 1 : 0;
                 IPAdd[0] = IPAdd[0] % 256;
             }
+            //
             dataGridView1.DataSource = table;
         }
     }

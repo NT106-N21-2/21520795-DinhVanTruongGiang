@@ -69,23 +69,27 @@ namespace Lab1
                 return;
             }
             long num = long.Parse(textBox1.Text.Trim());
+            //Trường hợp num = 0
             if (num == 0)
             {
                 textBox2.Text = "Không";
                 return;
             }
+            //Tạo mảng các chữ cái tương ứng
             string[] DonVi = { "", "nghìn ", "triệu ", "tỷ " };
             string[] HangDonVi = { "", "một ", "hai ", "ba ", "bốn ", "năm ", "sáu ", "bảy ", "tám ", "chín " };
-            byte i = 0;
-            string KetQua = "", GroupText;
+            byte i = 0;//index của mảng DonVi
+            string KetQua = "", GroupText;//Chuỗi tạm
             while (num > 0)
             {
                 GroupText = "";
                 int group = (int)(num % 1000);
                 num /= 1000;
+                //Tạo các tham số tương ứng hàng trăm chục, đơn vị
                 int tram = group / 100;
                 int chuc = (group % 100) / 10;
                 int donvi = group % 10;
+                //Xét các trường hợp
                 if (tram == 0)
                 {
                     if (num > 0 && (chuc > 0 || donvi > 0)) GroupText = "không trăm ";
@@ -111,6 +115,7 @@ namespace Lab1
                         if (donvi == 5) GroupText += "lăm";
                     else GroupText += HangDonVi[donvi];
                 }
+                //Nối chuỗi kết quả với Grouptext
                 if (GroupText != "") KetQua = GroupText + DonVi[i] + KetQua;
                 i++;
             }
