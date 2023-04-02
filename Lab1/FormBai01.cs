@@ -30,28 +30,23 @@ namespace Lab1
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             //Kiểm tra textbox
-            try
-            {
-                string inputstring = textBox1.Text.Trim();
-                if (inputstring.Length == 1 && inputstring[0] == '-') { }
-                    else
-                    {
-                        int num = int.Parse(inputstring);
-                    }
-            }
-            catch
+            string inputstring = textBox1.Text.Trim();
+            if (inputstring == "-" || inputstring.Length == 0) return;
+            int num;
+            if (!int.TryParse(inputstring, out num))
             {
                 MessageBox.Show("Yêu cầu nhập số nguyên!");
                 textBox1.Text = string.Empty;
                 return;
             }
+            
         }
 
 
         private void button1_Click(object sender, EventArgs e)
         {
             //Kiểm tra input
-            if(textBox1.Text ==string.Empty||textBox2.Text==string.Empty)
+            if (textBox1.Text == string.Empty || textBox2.Text == string.Empty)
             {
                 MessageBox.Show("Yêu cầu nhập số nguyên!");
                 return;
@@ -67,21 +62,27 @@ namespace Lab1
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
             //Kiểm tra textbox
-            try
-            {
-                string inputstring = textBox2.Text.Trim();
-                if (inputstring.Length == 1 && inputstring[0] == '-') { }
-                else
-                {
-                    int num = int.Parse(inputstring);
-                }
-            }
-            catch
+            string inputstring = textBox2.Text.Trim();
+            if (inputstring == "-" || inputstring.Length == 0) return;
+            int num;
+            if (!int.TryParse(inputstring, out num))
             {
                 MessageBox.Show("Yêu cầu nhập số nguyên!");
-                textBox2.Text = string.Empty;
+                textBox1.Text = string.Empty;
                 return;
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            textBox1.Text= string.Empty;
+            textBox2.Text= string.Empty;
+            textBox3.Text= string.Empty;
         }
     }
 }

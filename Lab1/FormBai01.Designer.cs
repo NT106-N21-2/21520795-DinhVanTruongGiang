@@ -35,6 +35,8 @@
             button1 = new Button();
             label3 = new Label();
             textBox3 = new TextBox();
+            button2 = new Button();
+            button3 = new Button();
             SuspendLayout();
             // 
             // label1
@@ -79,9 +81,9 @@
             // button1
             // 
             button1.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.Location = new Point(223, 150);
+            button1.Location = new Point(52, 154);
             button1.Name = "button1";
-            button1.Size = new Size(230, 40);
+            button1.Size = new Size(144, 40);
             button1.TabIndex = 3;
             button1.Text = "Tính";
             button1.UseVisualStyleBackColor = true;
@@ -108,11 +110,35 @@
             textBox3.TabIndex = 2;
             textBox3.TextChanged += textBox1_TextChanged;
             // 
+            // button2
+            // 
+            button2.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            button2.Location = new Point(262, 154);
+            button2.Name = "button2";
+            button2.Size = new Size(144, 40);
+            button2.TabIndex = 3;
+            button2.Text = "Xóa";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
+            // button3
+            // 
+            button3.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            button3.Location = new Point(469, 154);
+            button3.Name = "button3";
+            button3.Size = new Size(144, 40);
+            button3.TabIndex = 3;
+            button3.Text = "Thoát";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
             // FormBai01
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(663, 304);
+            Controls.Add(button3);
+            Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(textBox2);
             Controls.Add(textBox3);
@@ -136,5 +162,7 @@
         private Button button1;
         private Label label3;
         private TextBox textBox3;
+        private Button button2;
+        private Button button3;
     }
 }
