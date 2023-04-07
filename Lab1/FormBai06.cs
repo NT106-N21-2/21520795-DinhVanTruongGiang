@@ -79,24 +79,29 @@ namespace Lab1
             int A = int.Parse(textBox2.Text.Trim());
             int B = int.Parse(textBox1.Text.Trim());
             long AGiaithua = 1, BGiaithua = 1, ALuyThua = 1, S3 = 0;
-            int S1 = 0, S2 = 0; 
-            for(int i = 1; i <= A; i++)
+            int S1 = 0, S2 = 0;
+            for (int i = 1; i <= A; i++)
             {
                 AGiaithua *= i;
                 S1 += i;
             }
-            for(int i = 1;i <= B; i++)
+            for (int i = 1; i <= B; i++)
             {
                 BGiaithua *= i;
-                S2 += i;     
+                S2 += i;
                 ALuyThua *= A;
                 S3 += ALuyThua;
             }
             //Xuat
-            textBox3.AppendText(Environment.NewLine + "A! = " + AGiaithua.ToString() + "\t" +  "B! = " + BGiaithua.ToString() + Environment.NewLine);
+            textBox3.AppendText(Environment.NewLine + "A! = " + AGiaithua.ToString() + "\t" + "B! = " + BGiaithua.ToString() + Environment.NewLine);
             textBox3.AppendText("S1 = 1 + 2 + 3 + ... + A = " + S1.ToString() + Environment.NewLine);
             textBox3.AppendText("S2 = 1 + 2 + 3 + ... + B = " + S2.ToString() + Environment.NewLine);
             textBox3.AppendText("S3 = A^1 + A^2 + A^3 + ... + A^B = " + S3.ToString() + Environment.NewLine);
+        }
+
+        private void FormBai06_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

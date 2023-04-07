@@ -44,7 +44,7 @@ namespace Lab1
             string[] ds = textBox3.Text.Split(',');
             //Kiếm tra chuỗi ds[0]
             foreach (char c in ds[0])
-                if (!char.IsLetter(c))
+                if (!char.IsLetter(c)&&c != ' ')
                 {
                     MessageBox.Show("Nhập sai họ tên!");
                     return;
@@ -126,6 +126,11 @@ namespace Lab1
         private void button3_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void FormBai8_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

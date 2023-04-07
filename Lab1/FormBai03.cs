@@ -33,7 +33,16 @@ namespace Lab1
                 return;
             }
         }
-
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //Xóa các textbox
+            textBox1.Text = string.Empty;
+            textBox2.Text = string.Empty;
+        }
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             if(textBox1.Text==string.Empty)
@@ -79,15 +88,6 @@ namespace Lab1
             }
             textBox2.Text = s;
         }
-        private void button2_Click(object sender, EventArgs e)
-        {
-            //Xóa các textbox
-            textBox1.Text = string.Empty;
-            textBox2.Text = string.Empty;
-        }
-        private void button3_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        
     }
 }

@@ -147,6 +147,7 @@
             Controls.Add(textBox3);
             Name = "FormBai06";
             Text = "FormBai06";
+            Load += FormBai06_Load;
             ResumeLayout(false);
             PerformLayout();
         }

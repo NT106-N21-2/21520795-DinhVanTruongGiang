@@ -13,7 +13,7 @@ using System.Windows.Forms;
 namespace Lab1
 {
     public partial class FormBai07 : Form
-    {        
+    {
         public FormBai07()
         {
             InitializeComponent();
@@ -22,9 +22,10 @@ namespace Lab1
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
             int SoSubnet;
-            if (!int.TryParse(textBox3.Text, out SoSubnet))
+            if (textBox3.Text.Length > 0 && !int.TryParse(textBox3.Text, out SoSubnet)) 
             {
                 MessageBox.Show("Mời bạn nhập số!");
+                return;
             }
         }
 
@@ -49,7 +50,7 @@ namespace Lab1
                     return;
                 }
                 //Kiểm tra Prefix có hợp lệ?
-                if (!byte.TryParse(input[1], out Prefix)||Prefix > 30 || Prefix < 0)
+                if (!byte.TryParse(input[1], out Prefix) || Prefix > 30 || Prefix < 0)
                 {
                     MessageBox.Show("Số prefix không hợp lệ");
                     return;
@@ -61,15 +62,29 @@ namespace Lab1
 
         private void textBox3_KeyDown(object sender, KeyEventArgs e)
         {
-            //if (textBox3.Text == string.Empty)
-            //{
-            //    MessageBox.Show("Mời nhập địa chỉ IP!");
-            //    return;
-            //}
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (textBox2.Text == string.Empty)
+            {
+                MessageBox.Show("Mời nhập địa chỉ IP!");
+                return;
+            }
+            if (textBox3.Text == string.Empty)
+            {
+                MessageBox.Show("Mời nhập số mạng con cần chia!");
+                return;
+            }
+            long somangcon = long.Parse(textBox2.Text);
+            long sosubnet = long.Parse(textBox3.Text);
+            if (sosubnet > somangcon)
+            {
+                MessageBox.Show("Số mạng cần chia vượt quá mức dự tính!");
+                textBox2.Text = string.Empty;
+                return;
+            }
             //Số subnet
             int SoSubnet = int.Parse(textBox3.Text);
             //Tạo mảng IPaddress
@@ -98,7 +113,15 @@ namespace Lab1
             //Buoc nhay tren mot octect = 2^(8-so bit muon tren octect đó)
             int[] BuocNhay = { 0, 0, 0, 0 };
             BuocNhay[(int)((Prefix + SoBitMuon) / 8)] += (int)(Math.Pow(2, 8 - (Prefix + SoBitMuon) % 8));
-            for (int i = (int)((Prefix + SoBitMuon) / 8) + 1; i < 4; i++) BuocNhay[i] = 256;
+            IPAdd[(int)((Prefix + SoBitMuon) / 8)] /= BuocNhay[(int)((Prefix+SoBitMuon)/8)];
+            for (int i = (int)((Prefix + SoBitMuon) / 8) + 1; i < 4; i++) 
+            {
+                BuocNhay[i] = 256;
+                IPAdd[i] = IPAdd[i] / 256;
+            }
+            //Tính lại địa chỉ mạng của input (nhập 192.168.1.2/24 trả về 192.168.1.0/24)
+
+
             string net = "";
             string firstIP = "";
             string lastIP = "";
@@ -107,7 +130,8 @@ namespace Lab1
             {
                 //Tính các giá trị
                 //ĐC mạng 
-                net = IPAdd[0].ToString() + '.' + IPAdd[1].ToString() + '.' + IPAdd[2].ToString() + '.' + IPAdd[3].ToString() + '/' + (SoBitMuon + Prefix).ToString();
+                net = IPAdd[0].ToString() + '.' + IPAdd[1].ToString() + '.' + IPAdd[2].ToString() 
+                    + '.' + IPAdd[3].ToString() + '/' + (SoBitMuon + Prefix).ToString();
                 //Đc đầu = ĐC mạng + 1 (octect 4)
                 firstIP = IPAdd[0].ToString() + '.' + IPAdd[1].ToString() + '.' + IPAdd[2].ToString() + '.' + (IPAdd[3] + 1).ToString();
                 //ĐC cuối = Đc mạng + bước nhảy - 2
@@ -124,20 +148,25 @@ namespace Lab1
                 //Cập nhật giá trị (+1 vào octect cuối cùng để nhảy sang mạng tiếp theo)
                 int flag = (int)((IPAdd[3] + 2) / 256);
                 IPAdd[3] = (IPAdd[3] + 2) % 256;
-                
+
                 IPAdd[2] += flag;//(int)((Prefix + SoBitMuon) / 8) <= 2 ? 1 : 0;
                 flag = (int)(IPAdd[2] / 256);
                 IPAdd[2] = IPAdd[2] % 256;
-                
+
                 IPAdd[1] += flag;// (int)((Prefix + SoBitMuon) / 8) <= 1 ? 1 : 0;
                 flag = (int)(IPAdd[1] / 256);
                 IPAdd[1] = IPAdd[1] % 256;
-                
+
                 IPAdd[0] += flag; //(int)((Prefix + SoBitMuon) / 8) <= 0 ? 1 : 0;
                 IPAdd[0] = IPAdd[0] % 256;
             }
             //
             dataGridView1.DataSource = table;
+        }
+
+        private void FormBai07_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

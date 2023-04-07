@@ -261,6 +261,7 @@
             Controls.Add(textBox1);
             Name = "FormBai8";
             Text = "FormBai8";
+            Load += FormBai8_Load;
             ResumeLayout(false);
             PerformLayout();
         }

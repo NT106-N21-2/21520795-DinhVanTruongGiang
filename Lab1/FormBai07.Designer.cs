@@ -146,6 +146,7 @@
             Controls.Add(dataGridView1);
             Name = "FormBai07";
             Text = "FormBai07";
+            Load += FormBai07_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
