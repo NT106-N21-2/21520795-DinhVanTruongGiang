@@ -41,6 +41,11 @@ namespace Lab1
             {
                 byte Prefix = 0;
                 string[] input = textBox1.Text.Split('/');//Tách textbox thành 2 phần bằng "/"
+                if(input.Length !=2) 
+                {
+                    MessageBox.Show("Địa chỉ IP không hợp lệ");
+                    return;
+                }
                 IPAddress ipAddress;
 
                 //Kiếm tra IP có hợp lệ?
