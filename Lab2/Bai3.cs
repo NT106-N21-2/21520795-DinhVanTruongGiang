@@ -131,5 +131,10 @@ namespace Lab2
             sw.Close();
             MessageBox.Show("Write successfully!");
         }
+
+        private void Bai3_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -73,6 +73,7 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(331, 717);
             textBox1.TabIndex = 0;
+            textBox1.ReadOnly = true;
             // 
             // button1
             // 
@@ -105,6 +106,8 @@
             button3.TabIndex = 1;
             button3.Text = "Back";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            button3.Enabled = false;
             // 
             // button4
             // 
@@ -115,6 +118,8 @@
             button4.TabIndex = 1;
             button4.Text = "Next";
             button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
+            button4.Enabled = false;
             // 
             // button5
             // 
@@ -125,6 +130,7 @@
             button5.TabIndex = 1;
             button5.Text = "Read From File";
             button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
             // 
             // textBox2
             // 
@@ -484,6 +490,21 @@
             ResumeLayout(false);
             PerformLayout();
         }
+
+        //private void Button5_Click(object sender, EventArgs e)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //private void Button4_Click(object sender, EventArgs e)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //private void Button3_Click(object sender, EventArgs e)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         #endregion
 

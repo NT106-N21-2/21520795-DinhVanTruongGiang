@@ -4,11 +4,12 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.Serialization.Formatters.Binary;
+
 
 namespace Lab2
 {
@@ -33,6 +34,16 @@ namespace Lab2
             c3 = float.Parse(info[5]);
             Avg = float.Parse(info[6]);
         }
+        public string GetInfo()
+        {
+            string line = this.Name + "\r\n" + this.Id + "\r\n" + this.PhoneNum 
+                + "\r\n" + this.c1 + "\r\n" + this.c2 + "\r\n" + this.c3 + "\r\n" + this.Avg + "\r\n\r\n";
+            return line;
+        }
+        public void AvgCal()
+        {
+            this.Avg = (this.c1 + this.c2 + this.c3) / 3;
+        }
     }
     public partial class Bai4 : Form
     {
@@ -40,25 +51,28 @@ namespace Lab2
         {
             InitializeComponent();
         }
-
+        static Student[] dssv = null;
         private void button1_Click(object sender, EventArgs e)
         {
             FileStream fs = new FileStream("input4.txt", FileMode.Create);
             BinaryFormatter bf = new BinaryFormatter();
 
-            Student[] list = new Student[50];
+            List<Student> list= new List<Student>();
             int i = 0;
             string[] studentInfo = textBox1.Text.Split("\r\n\r\n");
-            foreach(string s  in studentInfo)
+            foreach (string s in studentInfo)
             {
                 if (s != "")
                 {
                     string[] studentprop = s.Split("\r\n");
-                    list[i] = new Student(studentprop);
+                    Student student = new Student(studentprop);
+                    list.Add(student);
                     i++;
                 }
             }
-            bf.Serialize(fs, list);
+            dssv = new Student[list.Count];
+            dssv = list.ToArray();
+            bf.Serialize(fs, dssv);
             fs.Close();
         }
 
@@ -125,5 +139,71 @@ namespace Lab2
             //textBox7.Text = string.Empty;
             //textBox8.Text = string.Empty;
         }
+        private void button3_Click(object sender, EventArgs e)
+        {
+            int index = int.Parse(textBox16.Text) - 1;
+            ShowInfo(dssv[index - 1]);
+            textBox16.Text = index.ToString();
+            if (index == 1) button3.Enabled = false;
+            button4.Enabled = true;
+        }
+        private void button4_Click(object sender, EventArgs e)
+        {
+            int index = int.Parse(textBox16.Text) - 1;
+            ShowInfo(dssv[index + 1]);
+            textBox16.Text = (index + 2).ToString();
+            if (index+2>=dssv.Length) button4.Enabled = false;
+            button3.Enabled = true;
+        }
+        public void ShowInfo(Student s)
+        {
+            textBox9.Text = s.Name;
+            textBox10.Text = s.Id.ToString();
+            textBox11.Text = s.PhoneNum;
+            textBox12.Text = s.c1.ToString();
+            textBox13.Text = s.c2.ToString();
+            textBox14.Text = s.c3.ToString();
+            textBox15.Text = s.Avg.ToString();
+        }
+        private void button5_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FileStream inputfs = new FileStream("input4.txt", FileMode.Open, FileAccess.Read);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Can't find \"input4.txt\"!");
+                return;
+            }
+            finally
+            {
+                FileStream inputfs = new FileStream("input4.txt", FileMode.Open, FileAccess.Read);
+                FileStream outputfs = new FileStream("output4.txt", FileMode.Create, FileAccess.Write);
+                BinaryFormatter bf = new BinaryFormatter();
+                StreamWriter sw = new StreamWriter(outputfs);
+                dssv = (Student[])bf.Deserialize(inputfs);
+                //Xuat DSSV
+                textBox1.Text = string.Empty;
+                for (int i = 0; i < dssv.Length; i++)
+                {
+                    if (dssv[i] != null)
+                    {
+                        dssv[i].AvgCal();
+                        string s = dssv[i].GetInfo();
+                        textBox1.AppendText(s);
+                        sw.Write(s);
+                    }
+                }
+                sw.Close();
+                //thong tin chi tiet tung sinh vien
+                ShowInfo(dssv[0]);
+                textBox16.Text = "1";
+                button3.Enabled = false;
+                if (dssv[int.Parse(textBox16.Text)] == null) { button4.Enabled = false; }
+                else { button4.Enabled = true; }
+            }
+        }
+        
     }
 }

@@ -124,6 +124,7 @@
             Controls.Add(button1);
             Name = "Bai3";
             Text = "Bai3";
+            Load += Bai3_Load;
             ResumeLayout(false);
             PerformLayout();
         }

@@ -50,5 +50,10 @@ namespace Lab2
         {
             this.Close();
         }
+
+        private void Bai2_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
