@@ -54,7 +54,7 @@ namespace Lab2
         static Student[] dssv = null;
         private void button1_Click(object sender, EventArgs e)
         {
-            FileStream fs = new FileStream("input4.txt", FileMode.Create);
+            FileStream fs = new FileStream("input4.txt", FileMode.OpenOrCreate,FileAccess.Write);
             BinaryFormatter bf = new BinaryFormatter();
 
             List<Student> list= new List<Student>();
@@ -74,6 +74,7 @@ namespace Lab2
             dssv = list.ToArray();
             bf.Serialize(fs, dssv);
             fs.Close();
+            MessageBox.Show("Write successfully!");
         }
 
         private void Bai4_Load(object sender, EventArgs e)
@@ -170,6 +171,7 @@ namespace Lab2
             try
             {
                 FileStream inputfs = new FileStream("input4.txt", FileMode.Open, FileAccess.Read);
+                inputfs.Close();
             }
             catch (Exception ex)
             {
@@ -196,6 +198,9 @@ namespace Lab2
                     }
                 }
                 sw.Close();
+                inputfs.Close();
+                outputfs.Close();
+                
                 //thong tin chi tiet tung sinh vien
                 ShowInfo(dssv[0]);
                 textBox16.Text = "1";

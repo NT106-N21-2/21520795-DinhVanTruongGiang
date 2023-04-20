@@ -74,6 +74,7 @@
             textBox1.Size = new Size(331, 717);
             textBox1.TabIndex = 0;
             textBox1.ReadOnly = true;
+            textBox1.ScrollBars = ScrollBars.Both;
             // 
             // button1
             // 
