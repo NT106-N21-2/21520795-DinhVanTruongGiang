@@ -95,5 +95,10 @@ namespace Lab2
         {
             this.Close();
         }
+
+        private void Bai5_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -67,6 +67,7 @@
             textBox2.Location = new Point(12, 274);
             textBox2.Multiline = true;
             textBox2.Name = "textBox2";
+            textBox2.ReadOnly = true;
             textBox2.Size = new Size(577, 202);
             textBox2.TabIndex = 1;
             // 
@@ -183,6 +184,7 @@
             Controls.Add(textBox1);
             Name = "Bai5";
             Text = "Bai5";
+            Load += Bai5_Load;
             ResumeLayout(false);
             PerformLayout();
         }

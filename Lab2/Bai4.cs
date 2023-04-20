@@ -54,27 +54,40 @@ namespace Lab2
         static Student[] dssv = null;
         private void button1_Click(object sender, EventArgs e)
         {
-            FileStream fs = new FileStream("input4.txt", FileMode.OpenOrCreate,FileAccess.Write);
-            BinaryFormatter bf = new BinaryFormatter();
-
-            List<Student> list= new List<Student>();
-            int i = 0;
-            string[] studentInfo = textBox1.Text.Split("\r\n\r\n");
-            foreach (string s in studentInfo)
+            try
             {
-                if (s != "")
+                if (string.IsNullOrEmpty(textBox1.Text))
                 {
-                    string[] studentprop = s.Split("\r\n");
-                    Student student = new Student(studentprop);
-                    list.Add(student);
-                    i++;
+                    MessageBox.Show("Please Enter Information!");
+                    return;
                 }
+                FileStream fs = new FileStream("input4.txt", FileMode.OpenOrCreate, FileAccess.Write);
+                BinaryFormatter bf = new BinaryFormatter();
+
+                List<Student> list = new List<Student>();
+                int i = 0;
+                string[] studentInfo = textBox1.Text.Split("\r\n\r\n");
+                foreach (string s in studentInfo)
+                {
+                    if (s != "")
+                    {
+                        string[] studentprop = s.Split("\r\n");
+                        Student student = new Student(studentprop);
+                        list.Add(student);
+                        i++;
+                    }
+                }
+                dssv = new Student[list.Count];
+                dssv = list.ToArray();
+                bf.Serialize(fs, dssv);
+                fs.Close();
+                MessageBox.Show("Write successfully!");
+                textBox1.Text = string.Empty;
+            }catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
             }
-            dssv = new Student[list.Count];
-            dssv = list.ToArray();
-            bf.Serialize(fs, dssv);
-            fs.Close();
-            MessageBox.Show("Write successfully!");
         }
 
         private void Bai4_Load(object sender, EventArgs e)
@@ -131,14 +144,6 @@ namespace Lab2
             textBox1.AppendText(textBox6.Text + "\r\n");
             textBox1.AppendText(textBox7.Text + "\r\n");
             textBox1.AppendText(textBox8.Text + "\r\n\r\n");
-            //textBox1.Text = string.Empty;
-            //textBox2.Text = string.Empty;
-            //textBox3.Text = string.Empty;
-            //textBox4.Text = string.Empty;
-            //textBox5.Text = string.Empty;
-            //textBox6.Text = string.Empty;
-            //textBox7.Text = string.Empty;
-            //textBox8.Text = string.Empty;
         }
         private void button3_Click(object sender, EventArgs e)
         {
@@ -171,16 +176,6 @@ namespace Lab2
             try
             {
                 FileStream inputfs = new FileStream("input4.txt", FileMode.Open, FileAccess.Read);
-                inputfs.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Can't find \"input4.txt\"!");
-                return;
-            }
-            finally
-            {
-                FileStream inputfs = new FileStream("input4.txt", FileMode.Open, FileAccess.Read);
                 FileStream outputfs = new FileStream("output4.txt", FileMode.Create, FileAccess.Write);
                 BinaryFormatter bf = new BinaryFormatter();
                 StreamWriter sw = new StreamWriter(outputfs);
@@ -200,13 +195,18 @@ namespace Lab2
                 sw.Close();
                 inputfs.Close();
                 outputfs.Close();
-                
+
                 //thong tin chi tiet tung sinh vien
                 ShowInfo(dssv[0]);
                 textBox16.Text = "1";
                 button3.Enabled = false;
                 if (dssv[int.Parse(textBox16.Text)] == null) { button4.Enabled = false; }
                 else { button4.Enabled = true; }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Can't open \"input4.txt\"!");
+                return;
             }
         }
         

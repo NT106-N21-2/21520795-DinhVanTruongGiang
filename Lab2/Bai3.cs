@@ -79,8 +79,8 @@ namespace Lab2
                     operators.Push(c);
                 }
             }
-            operands.Reverse();
-            operators.Reverse();
+            //operands.Reverse();
+            //operators.Reverse();
             while (operators.Count > 0)
             {
                 float result = Caculate2Operands(operands.Pop(), operands.Pop(), operators.Pop());

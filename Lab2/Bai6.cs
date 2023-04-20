@@ -73,7 +73,7 @@ namespace Lab2
                     FileInfo fs = new FileInfo(Path);
                     //Nếu là file ảnh
                     if (fs.Extension == ".jpg" || fs.Extension == ".png" || fs.Extension == ".bmp" || fs.Extension == ".gif")
-                    {          
+                    {
                         textBox1.Visible = false;
                         Image image = Image.FromFile(Path);
                         pictureBox1.Visible = true;
@@ -93,7 +93,7 @@ namespace Lab2
                         return;
                     }
                     //Nếu là các định dạng file khác
-                    MessageBox.Show("Can't Open this file!");
+                    MessageBox.Show("Can't Open " + fs.Extension + " file!");
                 }
                 catch (Exception ex)
                 {

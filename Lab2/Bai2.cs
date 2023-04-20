@@ -31,6 +31,7 @@ namespace Lab2
                 StreamReader sr = new StreamReader(fs);
                 string s;
                 int line = 0, word = 0, ch = 0;
+                textBox1.Text = string.Empty;
                 while ((s = sr.ReadLine()) != null)
                 {
                     textBox1.AppendText(s + "\r\n");
@@ -42,15 +43,11 @@ namespace Lab2
                 textBox6.Text = word.ToString();
                 textBox7.Text = ch.ToString();
             }
-
-
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
         private void Bai2_Load(object sender, EventArgs e)
         {
 

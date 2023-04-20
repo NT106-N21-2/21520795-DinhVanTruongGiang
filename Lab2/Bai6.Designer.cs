@@ -47,7 +47,7 @@
             treeView1.Font = new Font("Times New Roman", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             treeView1.Location = new Point(12, 12);
             treeView1.Name = "treeView1";
-            treeView1.Size = new Size(246, 597);
+            treeView1.Size = new Size(246, 699);
             treeView1.TabIndex = 0;
             treeView1.AfterSelect += treeView1_AfterSelect;
             // 
@@ -57,7 +57,7 @@
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
             textBox1.ReadOnly = true;
-            textBox1.Size = new Size(720, 566);
+            textBox1.Size = new Size(868, 668);
             textBox1.TabIndex = 1;
             // 
             // label1
@@ -72,18 +72,18 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(264, 43);
+            pictureBox1.Location = new Point(264, 40);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(720, 566);
+            pictureBox1.Size = new Size(868, 671);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 3;
             pictureBox1.TabStop = false;
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             // 
             // Bai6
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(996, 621);
+            ClientSize = new Size(1144, 723);
             Controls.Add(pictureBox1);
             Controls.Add(label1);
             Controls.Add(textBox1);

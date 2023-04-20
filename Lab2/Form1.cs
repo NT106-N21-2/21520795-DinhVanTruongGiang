@@ -26,7 +26,10 @@ namespace Lab2
             using (FileStream outputfs = new FileStream("output2.txt", FileMode.Truncate))
             {
                 StreamWriter sw = new StreamWriter(outputfs);
-                sw.WriteLine(textBox1.Text);
+                string s = textBox1.Text;
+                s = s.ToUpper();
+                textBox1.Text = s;
+                sw.WriteLine(s);
                 sw.Close();
                 MessageBox.Show("Ghi thành công!");
             }

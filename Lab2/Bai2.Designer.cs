@@ -74,6 +74,7 @@
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
             textBox1.ReadOnly = true;
+            textBox1.ScrollBars = ScrollBars.Both;
             textBox1.Size = new Size(460, 475);
             textBox1.TabIndex = 1;
             // 
