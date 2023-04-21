@@ -1,6 +1,6 @@
 ﻿namespace Lab3
 {
-    partial class Ex1_UDP_Sever
+    partial class Ex1_UDP_Server
     {
         /// <summary>
         /// Required designer variable.

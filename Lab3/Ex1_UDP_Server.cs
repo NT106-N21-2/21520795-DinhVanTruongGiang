@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Lab3
 {
-    public partial class Ex1_UDP_Sever : Form
+    public partial class Ex1_UDP_Server : Form
     {
-        public Ex1_UDP_Sever()
+        public Ex1_UDP_Server()
         {
             InitializeComponent();
         }
