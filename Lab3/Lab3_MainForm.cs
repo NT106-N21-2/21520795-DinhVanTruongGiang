@@ -16,5 +16,11 @@ namespace Lab3
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Ex1_DashBoard ex1_DashBoard = new Ex1_DashBoard();
+            ex1_DashBoard.ShowDialog();
+        }
     }
 }

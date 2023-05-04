@@ -11,7 +11,7 @@ namespace Lab3
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Ex1_UDP_Client());
+            Application.Run(new Lab3_MainForm());
         }
     }
 }
