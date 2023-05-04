@@ -41,6 +41,7 @@
             button1.TabIndex = 0;
             button1.Text = "UDP Server";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // button2
             // 
@@ -51,6 +52,7 @@
             button2.TabIndex = 0;
             button2.Text = "UDP Client";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // Ex1_DashBoard
             // 

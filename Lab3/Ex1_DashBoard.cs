@@ -16,5 +16,17 @@ namespace Lab3
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Ex1_UDP_Server nf = new Ex1_UDP_Server();
+            nf.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Ex1_UDP_Client nf = new Ex1_UDP_Client();
+            nf.Show();
+        }
     }
 }

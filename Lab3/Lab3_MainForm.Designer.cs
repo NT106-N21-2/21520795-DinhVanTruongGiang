@@ -82,7 +82,6 @@
             btn_Ex4.TabIndex = 0;
             btn_Ex4.Text = "Exercise 4";
             btn_Ex4.UseVisualStyleBackColor = true;
-            btn_Ex4.Click += btn_Ex4_Click;
             // 
             // btn_Ex5
             // 
@@ -106,7 +105,6 @@
             btn_Exit.TabIndex = 0;
             btn_Exit.Text = "EXIT";
             btn_Exit.UseVisualStyleBackColor = true;
-            btn_Exit.Click += btn_Exit_Click;
             // 
             // Lab3_MainForm
             // 
