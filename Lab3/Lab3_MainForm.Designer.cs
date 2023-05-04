@@ -58,6 +58,7 @@
             button2.TabIndex = 0;
             button2.Text = "Exercise 2";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // button3
             // 
@@ -91,6 +92,7 @@
             button5.TabIndex = 0;
             button5.Text = "Exercise 5";
             button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
             // 
             // button6
             // 

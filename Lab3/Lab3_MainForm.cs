@@ -22,5 +22,17 @@ namespace Lab3
             Ex1_DashBoard ex1_DashBoard = new Ex1_DashBoard();
             ex1_DashBoard.ShowDialog();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Ex2 ex2 = new Ex2();
+            ex2.ShowDialog();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Ex5_DashBoard ex5_DashBoard = new Ex5_DashBoard();
+            ex5_DashBoard.ShowDialog();
+        }
     }
 }
