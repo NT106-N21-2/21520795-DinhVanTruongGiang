@@ -28,91 +28,97 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
-            button5 = new Button();
-            button6 = new Button();
+            btn_Ex1 = new Button();
+            btn_Ex2 = new Button();
+            btn_Ex3 = new Button();
+            btn_Ex4 = new Button();
+            btn_Ex5 = new Button();
+            btn_Exit = new Button();
             SuspendLayout();
             // 
-            // button1
+            // btn_Ex1
             // 
-            button1.AutoSize = true;
-            button1.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
-            button1.Location = new Point(68, 53);
-            button1.Name = "button1";
-            button1.Size = new Size(157, 75);
-            button1.TabIndex = 0;
-            button1.Text = "Exercise 1";
-            button1.UseVisualStyleBackColor = true;
+            btn_Ex1.AutoSize = true;
+            btn_Ex1.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_Ex1.Location = new Point(68, 53);
+            btn_Ex1.Name = "btn_Ex1";
+            btn_Ex1.Size = new Size(157, 75);
+            btn_Ex1.TabIndex = 0;
+            btn_Ex1.Text = "Exercise 1";
+            btn_Ex1.UseVisualStyleBackColor = true;
+            btn_Ex1.Click += btn_Ex1_Click;
             // 
-            // button2
+            // btn_Ex2
             // 
-            button2.AutoSize = true;
-            button2.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
-            button2.Location = new Point(292, 53);
-            button2.Name = "button2";
-            button2.Size = new Size(157, 75);
-            button2.TabIndex = 0;
-            button2.Text = "Exercise 2";
-            button2.UseVisualStyleBackColor = true;
+            btn_Ex2.AutoSize = true;
+            btn_Ex2.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_Ex2.Location = new Point(292, 53);
+            btn_Ex2.Name = "btn_Ex2";
+            btn_Ex2.Size = new Size(157, 75);
+            btn_Ex2.TabIndex = 0;
+            btn_Ex2.Text = "Exercise 2";
+            btn_Ex2.UseVisualStyleBackColor = true;
+            btn_Ex2.Click += btn_Ex2_Click;
             // 
-            // button3
+            // btn_Ex3
             // 
-            button3.AutoSize = true;
-            button3.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
-            button3.Location = new Point(518, 53);
-            button3.Name = "button3";
-            button3.Size = new Size(157, 75);
-            button3.TabIndex = 0;
-            button3.Text = "Exercise 3";
-            button3.UseVisualStyleBackColor = true;
+            btn_Ex3.AutoSize = true;
+            btn_Ex3.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_Ex3.Location = new Point(518, 53);
+            btn_Ex3.Name = "btn_Ex3";
+            btn_Ex3.Size = new Size(157, 75);
+            btn_Ex3.TabIndex = 0;
+            btn_Ex3.Text = "Exercise 3";
+            btn_Ex3.UseVisualStyleBackColor = true;
+            btn_Ex3.Click += btn_Ex3_Click;
             // 
-            // button4
+            // btn_Ex4
             // 
-            button4.AutoSize = true;
-            button4.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
-            button4.Location = new Point(68, 190);
-            button4.Name = "button4";
-            button4.Size = new Size(157, 75);
-            button4.TabIndex = 0;
-            button4.Text = "Exercise 4";
-            button4.UseVisualStyleBackColor = true;
+            btn_Ex4.AutoSize = true;
+            btn_Ex4.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_Ex4.Location = new Point(68, 190);
+            btn_Ex4.Name = "btn_Ex4";
+            btn_Ex4.Size = new Size(157, 75);
+            btn_Ex4.TabIndex = 0;
+            btn_Ex4.Text = "Exercise 4";
+            btn_Ex4.UseVisualStyleBackColor = true;
+            btn_Ex4.Click += btn_Ex4_Click;
             // 
-            // button5
+            // btn_Ex5
             // 
-            button5.AutoSize = true;
-            button5.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
-            button5.Location = new Point(292, 190);
-            button5.Name = "button5";
-            button5.Size = new Size(157, 75);
-            button5.TabIndex = 0;
-            button5.Text = "Exercise 5";
-            button5.UseVisualStyleBackColor = true;
+            btn_Ex5.AutoSize = true;
+            btn_Ex5.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_Ex5.Location = new Point(292, 190);
+            btn_Ex5.Name = "btn_Ex5";
+            btn_Ex5.Size = new Size(157, 75);
+            btn_Ex5.TabIndex = 0;
+            btn_Ex5.Text = "Exercise 5";
+            btn_Ex5.UseVisualStyleBackColor = true;
+            btn_Ex5.Click += btn_Ex5_Click;
             // 
-            // button6
+            // btn_Exit
             // 
-            button6.AutoSize = true;
-            button6.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
-            button6.Location = new Point(518, 190);
-            button6.Name = "button6";
-            button6.Size = new Size(157, 75);
-            button6.TabIndex = 0;
-            button6.Text = "EXIT";
-            button6.UseVisualStyleBackColor = true;
+            btn_Exit.AutoSize = true;
+            btn_Exit.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_Exit.Location = new Point(518, 190);
+            btn_Exit.Name = "btn_Exit";
+            btn_Exit.Size = new Size(157, 75);
+            btn_Exit.TabIndex = 0;
+            btn_Exit.Text = "EXIT";
+            btn_Exit.UseVisualStyleBackColor = true;
+            btn_Exit.Click += btn_Exit_Click;
             // 
             // Lab3_MainForm
             // 
             AutoScaleDimensions = new SizeF(11F, 22F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(718, 342);
-            Controls.Add(button6);
-            Controls.Add(button5);
-            Controls.Add(button4);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(btn_Exit);
+            Controls.Add(btn_Ex5);
+            Controls.Add(btn_Ex4);
+            Controls.Add(btn_Ex3);
+            Controls.Add(btn_Ex2);
+            Controls.Add(btn_Ex1);
             Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point);
             Margin = new Padding(4, 3, 4, 3);
             Name = "Lab3_MainForm";
@@ -123,11 +129,11 @@
 
         #endregion
 
-        private Button button1;
-        private Button button2;
-        private Button button3;
-        private Button button4;
-        private Button button5;
-        private Button button6;
+        private Button btn_Ex1;
+        private Button btn_Ex2;
+        private Button btn_Ex3;
+        private Button btn_Ex4;
+        private Button btn_Ex5;
+        private Button btn_Exit;
     }
 }

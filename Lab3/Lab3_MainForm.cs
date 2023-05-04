@@ -16,5 +16,35 @@ namespace Lab3
         {
             InitializeComponent();
         }
+        private void btn_Ex1_Click(object sender, EventArgs e)
+        {
+            Ex1_DashBoard nf = new Ex1_DashBoard();
+            nf.ShowDialog();
+        }
+
+        private void btn_Ex2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Ex3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Ex4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Ex5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Exit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
