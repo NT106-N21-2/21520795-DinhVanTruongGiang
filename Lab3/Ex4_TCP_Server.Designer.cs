@@ -75,7 +75,6 @@
             Margin = new Padding(5, 4, 5, 4);
             Name = "Ex4_TCP_Server";
             Text = "Ex4_TCP_Server";
-            Load += Ex4_TCP_Server_Load;
             ResumeLayout(false);
         }
 

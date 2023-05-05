@@ -97,7 +97,6 @@
             Margin = new Padding(5, 4, 5, 4);
             Name = "Ex4_TCP_Client";
             Text = "Ex4_TCP_Client";
-            Load += Ex4_TCP_Client_Load;
             ResumeLayout(false);
             PerformLayout();
         }

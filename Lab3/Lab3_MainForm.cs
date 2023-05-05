@@ -12,7 +12,7 @@ namespace Lab3
 {
     public partial class Lab3_MainForm : Form
     {
-        public Lab3_MainForm()
+        public Lab3_MainForm() 
         {
             InitializeComponent();
         }
