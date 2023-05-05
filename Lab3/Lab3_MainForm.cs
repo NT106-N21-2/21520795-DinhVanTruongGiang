@@ -45,5 +45,10 @@ namespace Lab3
             Ex4_DashBoard ex4 = new Ex4_DashBoard();
             ex4.ShowDialog();
         }
+
+        private void btn_Exit_Click(object sender, EventArgs e)
+        {
+                Application.Exit();
+        }
     }
 }

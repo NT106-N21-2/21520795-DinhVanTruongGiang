@@ -106,6 +106,7 @@
             btn_Exit.TabIndex = 0;
             btn_Exit.Text = "EXIT";
             btn_Exit.UseVisualStyleBackColor = true;
+            btn_Exit.Click += btn_Exit_Click;
             // 
             // Lab3_MainForm
             // 
