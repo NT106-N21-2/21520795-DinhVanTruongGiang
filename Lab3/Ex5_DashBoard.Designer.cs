@@ -41,6 +41,7 @@
             TCPClient.TabIndex = 1;
             TCPClient.Text = "TCP Client";
             TCPClient.UseVisualStyleBackColor = true;
+            TCPClient.Click += TCPClient_Click;
             // 
             // TCPServer
             // 

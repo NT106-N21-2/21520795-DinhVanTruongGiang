@@ -15,12 +15,20 @@ namespace Lab3
         public Ex5_DashBoard()
         {
             InitializeComponent();
+            TCPClient.Enabled = false;
         }
 
         private void TCPServer_Click(object sender, EventArgs e)
         {
             Ex5_Server ex5_Server = new Ex5_Server();
-            ex5_Server.ShowDialog();
+            TCPClient.Enabled = true;
+            ex5_Server.Show();
+        }
+
+        private void TCPClient_Click(object sender, EventArgs e)
+        {
+            Ex5_Client ex5_Client = new Ex5_Client();
+            ex5_Client.Show();
         }
     }
 }
