@@ -15,40 +15,49 @@ namespace Lab3
     public partial class Ex5_Server : Form
     {
         private TcpListener server;
-
-        //Danh sách chứa các kết nối Client
-        private List<TcpClient> clients;
+        private Thread listenThread;
+        private List<TcpClient> connectedClients = new List<TcpClient>();
 
         //Cái này để lưu tên người dùng với mỗi client được kết nối
         private Dictionary<TcpClient, string> userNames = new Dictionary<TcpClient, string>();
 
         //Dùng để kiểm tra xem Server có đang chạy hay không
         private bool isServerRunning;
+
         public Ex5_Server()
         {
             InitializeComponent();
-            clients = new List<TcpClient>();
         }
-
+        private void Log(string message)
+        {
+            if (serverTextBox.InvokeRequired)
+            {
+                serverTextBox.Invoke(new Action<string>(Log), message);
+            }
+            else
+            {
+                serverTextBox.AppendText(message);
+            }
+        }
         private void Listen_Click(object sender, EventArgs e)
         {
             int port = 8080;
-            //Dùng IPAddress.Loopback để máy chủ sẽ chỉ lắng nghe các kết nối đến từ máy tính đang chạy ứng dụng
-            server = new TcpListener(IPAddress.Loopback, port);
+            server = new TcpListener(IPAddress.Any, port);
             //Server bắt đầu lắng nghe
             server.Start();
             isServerRunning = true;
 
-            serverTextBox.AppendText($"Server started on 127.0.0.1:{port}\n");
+            Log($"Server started on 127.0.0.1:{port}\n");
 
             //Tạo thread để chấp nhận kết nối từ các Client
-            Thread acceptClientsThread = new Thread(AcceptClients);
-            acceptClientsThread.Start();
+            listenThread = new Thread(AcceptClients);
+            listenThread.Start();
 
             //Ẩn/hiện các button
             Listen.Enabled = false;
             StopListen.Enabled = true;
         }
+
         private void AcceptClients()
         {
             while (isServerRunning)
@@ -57,10 +66,13 @@ namespace Lab3
                 {
                     //Chấp nhận kết nối từ Client
                     TcpClient client = server.AcceptTcpClient();
-                    //Thêm Client vào list
-                    clients.Add(client);
-                    serverTextBox.AppendText($"New client connected: {client.Client.RemoteEndPoint}\n");
+                    Log($"New client connected from: {client.Client.RemoteEndPoint}\n");
 
+                    // Thêm client vào danh sách
+                    lock (connectedClients)
+                    {
+                        connectedClients.Add(client);
+                    }
                     //Đọc tên người dùng
                     NetworkStream stream = client.GetStream();
                     byte[] buffer = new byte[1024];
@@ -72,12 +84,14 @@ namespace Lab3
                     Thread receiveMessagesThread = new Thread(() => ReceiveMessages(client));
                     receiveMessagesThread.Start();
                 }
-                catch
+                catch (Exception ex)
                 {
                     if (!isServerRunning)
                     {
                         break;
                     }
+                    Log($"Error accepting client: {ex.Message}");
+                    continue;
                 }
             }
         }
@@ -104,13 +118,18 @@ namespace Lab3
                 string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
 
                 //In ra màn hình
-                serverTextBox.AppendText($"{userName}: {message}\n");
+                Log($"{userName}: {message}\n");
                 //Gửi tới các client khác nữa
                 SendMessageToAllClients(client, $"{userName}: {message}");
             }
 
-            //clients.Remove(client);
-            //serverTextBox.AppendText($"Client disconnected: {client.Client.RemoteEndPoint}\n");
+            //Xoá Client khỏi ds
+            lock (connectedClients)
+            {
+                connectedClients.Remove(client);
+            }
+
+            Log($"Client disconnected: {client.Client.RemoteEndPoint}\n");
             stream.Close();
         }
         private void SendMessageToAllClients(TcpClient senderClient, string message)
@@ -119,14 +138,10 @@ namespace Lab3
             byte[] buffer = Encoding.UTF8.GetBytes(message);
 
             //Duyệt qua tất cả các Client trong list để gửi tin nhắn
-            foreach (TcpClient client in clients)
+            foreach (TcpClient client in userNames.Keys)
             {
-                // Bỏ qua Client vừa gửi tin nhắn
-                if (client != senderClient)
-                {
-                    NetworkStream stream = client.GetStream();
-                    stream.Write(buffer, 0, buffer.Length);
-                }
+                NetworkStream stream = client.GetStream();
+                stream.Write(buffer, 0, buffer.Length);
             }
         }
 
@@ -139,13 +154,13 @@ namespace Lab3
             //Dừng máy chủ
             server.Stop();
             //Xoá danh sách các Clients đang kết nối
-            clients.Clear();
-            serverTextBox.AppendText("Server stopped\n");
+            connectedClients.Clear();
+            Log("Server stopped\n");
         }
 
-        private void Ex5_Server_Load(object sender, EventArgs e)
-        {
+        //private void Ex5_Server_Load(object sender, EventArgs e)
+        //{
 
-        }
+        //}
     }
 }
