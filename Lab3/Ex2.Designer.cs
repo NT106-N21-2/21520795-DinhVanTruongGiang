@@ -35,6 +35,7 @@
             // 
             // StopListen
             // 
+            StopListen.Enabled = false;
             StopListen.Location = new Point(694, 12);
             StopListen.Name = "StopListen";
             StopListen.Size = new Size(94, 29);
