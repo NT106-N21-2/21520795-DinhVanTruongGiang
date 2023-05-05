@@ -1,6 +1,6 @@
 ﻿namespace Lab3
 {
-    partial class Ex1_UDP_Server
+    partial class Ex4_TCP_Client
     {
         /// <summary>
         /// Required designer variable.
@@ -28,84 +28,86 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
+            richTextBox1 = new RichTextBox();
             textBox1 = new TextBox();
             button1 = new Button();
-            label2 = new Label();
-            textBox2 = new TextBox();
+            button2 = new Button();
+            button3 = new Button();
             SuspendLayout();
             // 
-            // label1
+            // richTextBox1
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(14, 22);
-            label1.Margin = new Padding(5, 0, 5, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(51, 26);
-            label1.TabIndex = 0;
-            label1.Text = "Port";
+            richTextBox1.Location = new Point(12, 12);
+            richTextBox1.Name = "richTextBox1";
+            richTextBox1.Size = new Size(464, 319);
+            richTextBox1.TabIndex = 0;
+            richTextBox1.Text = "";
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(73, 14);
+            textBox1.Location = new Point(12, 350);
+            textBox1.Multiline = true;
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 34);
+            textBox1.ScrollBars = ScrollBars.Both;
+            textBox1.Size = new Size(464, 44);
             textBox1.TabIndex = 1;
             // 
             // button1
             // 
-            button1.Location = new Point(544, 21);
+            button1.Location = new Point(512, 358);
             button1.Name = "button1";
-            button1.Size = new Size(94, 29);
+            button1.Size = new Size(123, 36);
             button1.TabIndex = 2;
-            button1.Text = "Listen";
+            button1.Text = "Send";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // label2
+            // button2
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(14, 68);
-            label2.Name = "label2";
-            label2.Size = new Size(181, 26);
-            label2.TabIndex = 3;
-            label2.Text = "Received Message";
+            button2.Location = new Point(512, 12);
+            button2.Name = "button2";
+            button2.Size = new Size(123, 44);
+            button2.TabIndex = 3;
+            button2.Text = "Connect";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
-            // textBox2
+            // button3
             // 
-            textBox2.Location = new Point(14, 97);
-            textBox2.Multiline = true;
-            textBox2.Name = "textBox2";
-            textBox2.ReadOnly = true;
-            textBox2.ScrollBars = ScrollBars.Both;
-            textBox2.Size = new Size(624, 376);
-            textBox2.TabIndex = 4;
+            button3.Enabled = false;
+            button3.Location = new Point(512, 80);
+            button3.Name = "button3";
+            button3.Size = new Size(123, 44);
+            button3.TabIndex = 3;
+            button3.Text = "Disconnect";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
-            // Ex1_UDP_Server
+            // Ex4_TCP_Client
             // 
             AutoScaleDimensions = new SizeF(13F, 26F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(658, 485);
-            Controls.Add(textBox2);
-            Controls.Add(label2);
+            ClientSize = new Size(647, 424);
+            Controls.Add(button3);
+            Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(textBox1);
-            Controls.Add(label1);
+            Controls.Add(richTextBox1);
             Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             Margin = new Padding(5, 4, 5, 4);
-            Name = "Ex1_UDP_Server";
-            Text = "Exercise1_UDP_Sever";
-            Load += Ex1_UDP_Server_Load;
+            Name = "Ex4_TCP_Client";
+            Text = "Ex4_TCP_Client";
+            Load += Ex4_TCP_Client_Load;
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Label label1;
+        private RichTextBox richTextBox1;
         private TextBox textBox1;
         private Button button1;
-        private Label label2;
-        private TextBox textBox2;
+        private Button button2;
+        private Button button3;
     }
 }

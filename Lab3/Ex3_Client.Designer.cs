@@ -88,6 +88,7 @@
             Name = "Ex3_Client";
             Text = "Ex3_Client";
             FormClosed += Ex3_Client_FormClosed;
+            Load += Ex3_Client_Load;
             ResumeLayout(false);
         }
 

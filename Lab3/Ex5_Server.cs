@@ -142,5 +142,10 @@ namespace Lab3
             clients.Clear();
             serverTextBox.AppendText("Server stopped\n");
         }
+
+        private void Ex5_Server_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

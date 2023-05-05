@@ -39,5 +39,11 @@ namespace Lab3
             Ex5_DashBoard ex5_DashBoard = new Ex5_DashBoard();
             ex5_DashBoard.ShowDialog();
         }
+
+        private void btn_Ex4_Click(object sender, EventArgs e)
+        {
+            Ex4_DashBoard ex4 = new Ex4_DashBoard();
+            ex4.ShowDialog();
+        }
     }
 }

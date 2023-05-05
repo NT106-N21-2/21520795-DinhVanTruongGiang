@@ -84,7 +84,7 @@ namespace Lab3
             if (client != null)
             {
                 client.Close();
-                client = null;
+                //client = null;
             }
             DisplayMessage("\n\t\t\t\tDisconnected from server...");
             btn_Disconnect.Enabled = false;
@@ -137,6 +137,11 @@ namespace Lab3
         private void Ex3_Client_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void Ex3_Client_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

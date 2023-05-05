@@ -24,7 +24,7 @@ namespace Lab3
         private void button1_Click(object sender, EventArgs e)
         {
             int port;
-            if(!int.TryParse(textBox1.Text, out port))
+            if (!int.TryParse(textBox1.Text, out port))
             {
                 MessageBox.Show("Please enter port number!");
                 return;
@@ -32,6 +32,7 @@ namespace Lab3
             Thread serverThread = new Thread(new ThreadStart(ServerThread));
             serverThread.Start();
             serverThread.IsBackground = true;
+            textBox2.AppendText("Listening ... \n");
         }
         private void ServerThread()
         {
@@ -41,9 +42,14 @@ namespace Lab3
                 IPEndPoint RemoteIPEP = new IPEndPoint(IPAddress.Any, 0);
                 Byte[] recvdBytes = udpClient.Receive(ref RemoteIPEP);
                 string RecvdData = Encoding.UTF8.GetString(recvdBytes);
-                string msg = RemoteIPEP.Address.ToString() + ": "+ RecvdData.ToString() + "\n";
-                textBox2.Text += msg;
+                string msg = RemoteIPEP.Address.ToString() + ": " + RecvdData.ToString();
+                textBox2.AppendText(msg + "\n");
             }
+        }
+
+        private void Ex1_UDP_Server_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

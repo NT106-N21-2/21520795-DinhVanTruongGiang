@@ -22,6 +22,7 @@ namespace Lab3
         }
         private void btn_Listen_Click(object sender, EventArgs e)
         {
+            CheckForIllegalCrossThreadCalls = false;
             btn_Listen.Enabled = false;
             //bđ lắng nghe các kết nối trên một thread mới
             listenThread = new Thread(new ThreadStart(ListenForClients));
@@ -43,7 +44,6 @@ namespace Lab3
             {
                 // Chờ client kết nối vô
                 TcpClient client = listener.AcceptTcpClient();
-
                 // Xử lý client mới trên thread mới
                 Thread clientThread = new Thread(new ParameterizedThreadStart(HandleClient));
                 clientThread.Start(client);
@@ -114,6 +114,11 @@ namespace Lab3
         private void Ex3_Server_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void Ex3_Server_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

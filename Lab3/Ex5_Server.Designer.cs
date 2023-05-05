@@ -72,6 +72,7 @@
             Controls.Add(StopListen);
             Name = "Ex5_Server";
             Text = "Ex5_Server";
+            Load += Ex5_Server_Load;
             ResumeLayout(false);
         }
 

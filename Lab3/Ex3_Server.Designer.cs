@@ -61,6 +61,7 @@
             Name = "Ex3_Server";
             Text = "Ex3_Server";
             FormClosed += Ex3_Server_FormClosed;
+            Load += Ex3_Server_Load;
             ResumeLayout(false);
         }
 
