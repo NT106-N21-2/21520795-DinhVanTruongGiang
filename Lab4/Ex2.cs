@@ -17,6 +17,7 @@ namespace Lab4
         public Ex2()
         {
             InitializeComponent();
+            btn_Post.Enabled = false;
             //Tạo HttpClient và đưa cái đường dẫn tới trang đề bài yêu cầu vô (thiết lập base address cho nó)
             httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri("http://www.contoso.com/PostAccepter.aspx");
@@ -53,6 +54,14 @@ namespace Lab4
         private void Ex2_FormClosing(object sender, FormClosingEventArgs e)
         {
             Dispose(true);
+        }
+
+        private void tb_Data_TextChanged(object sender, EventArgs e)
+        {
+            // Kiểm tra xem người dùng có nhập dữ liệu để POST chưa
+            bool hasData = !string.IsNullOrWhiteSpace(tb_Data.Text);
+            //nếu có enable nút post
+            btn_Post.Enabled = hasData;
         }
     }
 }

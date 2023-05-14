@@ -49,6 +49,7 @@
             tb_Data.Name = "tb_Data";
             tb_Data.Size = new Size(659, 27);
             tb_Data.TabIndex = 1;
+            tb_Data.TextChanged += tb_Data_TextChanged;
             // 
             // rtb_Response
             // 
