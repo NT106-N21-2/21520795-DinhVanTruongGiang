@@ -35,5 +35,17 @@ namespace Lab4
             Ex4 ex4 = new Ex4();
             ex4.ShowDialog();
         }
+
+        private void btn_Ex1_Click(object sender, EventArgs e)
+        {
+            Ex1 ex1 = new Ex1();
+            ex1.ShowDialog();
+        }
+
+        private void btn_Ex6_Click(object sender, EventArgs e)
+        {
+            Ex6 ex6 = new Ex6();
+            ex6.ShowDialog();
+        }
     }
 }

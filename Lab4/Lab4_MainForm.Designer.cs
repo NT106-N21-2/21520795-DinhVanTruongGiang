@@ -107,6 +107,7 @@
             btn_Ex1.TabIndex = 6;
             btn_Ex1.Text = "Exercise 1";
             btn_Ex1.UseVisualStyleBackColor = true;
+            btn_Ex1.Click += btn_Ex1_Click;
             // 
             // btn_Ex6
             // 
@@ -118,6 +119,7 @@
             btn_Ex6.TabIndex = 7;
             btn_Ex6.Text = "Exercise 6";
             btn_Ex6.UseVisualStyleBackColor = true;
+            btn_Ex6.Click += btn_Ex6_Click;
             // 
             // Lab4_MainForm
             // 
