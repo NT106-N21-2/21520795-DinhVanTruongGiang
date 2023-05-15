@@ -71,6 +71,7 @@
             btn_Ex4.TabIndex = 3;
             btn_Ex4.Text = "Exercise 4";
             btn_Ex4.UseVisualStyleBackColor = true;
+            btn_Ex4.Click += btn_Ex4_Click;
             // 
             // btn_Ex3
             // 
@@ -82,6 +83,7 @@
             btn_Ex3.TabIndex = 4;
             btn_Ex3.Text = "Exercise 3";
             btn_Ex3.UseVisualStyleBackColor = true;
+            btn_Ex3.Click += btn_Ex3_Click;
             // 
             // btn_Ex2
             // 
