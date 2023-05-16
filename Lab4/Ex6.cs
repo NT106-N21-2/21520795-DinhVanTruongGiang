@@ -10,144 +10,132 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Lab4.Ex6;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Lab4
 {
     public partial class Ex6 : Form
     {
+        private HtmlWeb htmlWeb;
+        private List<Article> articles;
         public Ex6()
         {
             InitializeComponent();
-            webNews.EnsureCoreWebView2Async();
-            webNews.NavigationCompleted += WebNews_NavigationCompleted;
+            htmlWeb = new HtmlWeb();
+            articles = new List<Article>();
         }
-
-        private async Task<string> getHTML(string szURL)
+        public class Article
         {
-            // Create a request for the URL.
-            WebRequest request = WebRequest.Create(szURL);
-            // Get the response.
-            WebResponse response = await request.GetResponseAsync();
-            // Get the stream containing content returned by the server.
-            Stream dataStream = response.GetResponseStream();
-            // Open the stream using a StreamReader for easy access.
-            StreamReader reader = new StreamReader(dataStream);
-            // Read the content.
-            string responseFromServer = await reader.ReadToEndAsync();
-            // Close the response.
-            response.Close();
-            return responseFromServer;
-        }
-        public class ArticlePanel : FlowLayoutPanel
-        {
-            public string url { get; set; }
-        }
+            public string Title { get; set; }
+            public string Description { get; set; }
+            public string Link { get; set; }
 
+            public Article(string title, string description, string link)
+            {
+                Title = title;
+                Description = description;
+                Link = link;
+            }
+        }
+        private void RunProgress()
+        {
+            // Thực hiện công việc chạy từ đầu tới cuối
+            for (int i = 0; i <= 100; i++)
+            {
+                // Thiết lập giá trị hiện tại của ProgressBar
+                prgBar.Value = i;
+
+                // Dừng một chút để thấy thanh progress chạy
+                Thread.Sleep(100); // Đợi 100 milliseconds (0.1 giây)
+            }
+        }
         private async void btnGet_Click(object sender, EventArgs e)
         {
-            // Gọi hàm GetHTML
-            string htmlContent = await getHTML(textURL.Text);
-
-            // Trong lúc tải web thì bntGet sẽ không khả dụng
-            btnGet.Enabled = false;
-
-            while (flowLayoutPanel.Controls.Count > 0)
-            {
-                var control = flowLayoutPanel.Controls[0];
-                flowLayoutPanel.Controls.Remove(control);
-                control.Dispose();
-            }
-            webNews.CoreWebView2.ExecuteScriptAsync("document.body.innerHTML = '';");
-            webNews.CoreWebView2.Navigate("about:blank");
-
-            // Hiển thị progress bar khi đang tải dữ liệu trang web
+            prgBar.Maximum = 100;
             prgBar.Visible = true;
             prgBar.Value = 0;
-
-            // Bắt đầu tải và phân tích website
-            string url = textURL.Text;
-            var web = new HtmlWeb();
-            var doc = web.Load(url);
-
-            // Trích xuất các bài báo
-            var articles = doc.DocumentNode.Descendants("article")
-                .Where(d => d.Attributes.Contains("class") && d.Attributes["class"].Value.Contains("item-news-common"));
-
-            foreach (var article in articles)
+            RunProgress();
+            string url = txtUrl.Text;
+            if (!string.IsNullOrEmpty(url))
             {
-                string title = article.Descendants("h2").FirstOrDefault()?.InnerText;
-                string description = article.Descendants("p").FirstOrDefault()?.InnerText;
-                /*string imageUrl = article.Descendants("img")
-                    .Where(d => d.Attributes.Contains("itemprop") && d.Attributes["itemprop"].Value == "contentUrl")
-                    .Select(d => d.Attributes["src"].Value)
-                    .FirstOrDefault();*/
+                btnGet.Enabled = false;
+                LoadWebsite(url);
+                btnGet.Enabled = true;
+            }
+            prgBar.Visible = false;
+        }
+        private void LoadWebsite(string url)
+        {
+            var htmlDoc = htmlWeb.Load(url);
 
-                var panel = new ArticlePanel();
-                //lấy url của từng news
-                panel.url = article.Descendants("h2").FirstOrDefault()?.Descendants("a").FirstOrDefault()?.GetAttributeValue("href", "");
+            var articleNodes = htmlDoc.DocumentNode.SelectNodes("//*[@id=\"automation_TV0\"]/div[2]/article");
 
-                panel.FlowDirection = FlowDirection.TopDown;
-                panel.AutoSize = true;
-                panel.BackColor = Color.LightGray;
-                /*if (!string.IsNullOrEmpty(imageUrl))
+            // Xóa các Control cũ trong Panel
+            panelArticles.Controls.Clear();
+
+            int groupBoxTop = 10; // Đặt vị trí top ban đầu cho GroupBox
+
+            foreach (var articleNode in articleNodes)
+            {
+                var titleNode = articleNode.SelectSingleNode("./h2/a");
+                var descriptionNode = articleNode.SelectSingleNode("./p");
+
+                if (titleNode != null && descriptionNode != null)
                 {
-                    var pictureBox = new PictureBox();
-                    pictureBox.Load(imageUrl);
-                    pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
-                    pictureBox.Width = 100;
-                    pictureBox.Height = 100;
-                    panel.Controls.Add(pictureBox);
-                }*/
+                    var title = titleNode.InnerText;
+                    var description = descriptionNode.InnerText;
+                    var link = titleNode.GetAttributeValue("href", "");
 
-                if (!string.IsNullOrEmpty(title))
-                {
-                    var titleLabel = new Label();
+                    GroupBox groupBox = new GroupBox();
+                    groupBox.AutoSize = true;
+                    groupBox.Text = null;
+                    groupBox.Location = new Point(10, groupBoxTop); // Đặt vị trí cho GroupBox
+
+                    panelArticles.Controls.Add(groupBox);
+
+                    Label titleLabel = new Label();
                     titleLabel.Text = title;
+                    titleLabel.Font = new Font(titleLabel.Font.FontFamily, 14, FontStyle.Bold); // Phóng to cỡ chữ
                     titleLabel.AutoSize = true;
-                    titleLabel.Font = new Font(titleLabel.Font.FontFamily, titleLabel.Font.Size, FontStyle.Bold);
-                    panel.Controls.Add(titleLabel);
-                }
+                    titleLabel.MaximumSize = new Size(729 - 20, 0);
+                    titleLabel.Location = new Point(10, 5); // Điều chỉnh vị trí tiêu đề
+                    groupBox.Controls.Add(titleLabel);
 
-                if (!string.IsNullOrEmpty(description))
-                {
-                    var descriptionLabel = new Label();
+                    Label descriptionLabel = new Label();
                     descriptionLabel.Text = description;
                     descriptionLabel.AutoSize = true;
-                    panel.Controls.Add(descriptionLabel);
-                }
+                    descriptionLabel.Font = new Font(descriptionLabel.Font.FontFamily, 12);
+                    descriptionLabel.MaximumSize = new Size(729 - 20, 0); // Giới hạn kích thước của Label
+                    descriptionLabel.Location = new Point(10, titleLabel.Bottom + 10); // Điều chỉnh vị trí mô tả
+                    groupBox.Controls.Add(descriptionLabel);
 
+                    LinkLabel readMoreLinkLabel = new LinkLabel();
+                    readMoreLinkLabel.Text = "Read more";
+                    readMoreLinkLabel.AutoSize = true;
+                    readMoreLinkLabel.Location = new Point(10, descriptionLabel.Bottom + 10); // Điều chỉnh vị trí "Read more"
+                    groupBox.Controls.Add(readMoreLinkLabel);
 
-                flowLayoutPanel.Controls.Add(panel);
+                    readMoreLinkLabel.LinkClicked += (sender, e) =>
+                    {
+                        // Xử lý sự kiện khi nhấp vào liên kết "Read more"
+                        Ex6_WebNews webNews = new Ex6_WebNews(link);
+                        webNews.ShowDialog();
+                        //webNews.CoreWebView2.Navigate(link);
+                    };
 
-                panel.Click += Panel_Click;
-                foreach (Control childControl in panel.Controls)
-                {
-                    childControl.Click += Panel_Click;
+                    // Giới hạn độ rộng của GroupBox bằng độ rộng của Panel chính - 10
+                    groupBox.Width = panelArticles.Width - 10;
+
+                    groupBoxTop += groupBox.Height + 10; // Tăng vị trí top cho GroupBox tiếp theo
                 }
             }
-
-            // Ẩn progress bar
-            prgBar.Visible = false;
-
-            // Cho phép bntGet khả dụng
-            btnGet.Enabled = true;
         }
-        private void Panel_Click(object sender, EventArgs e)
+
+        private async void Ex6_Load(object sender, EventArgs e)
         {
-            if (sender is ArticlePanel panel)
-            {
-                webNews.CoreWebView2.Navigate(panel.url);
-            }
+            panelArticles.AutoScroll = true;
         }
-        private async void WebNews_NavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
-        {
-            // Clear the content of the current webpage in WebView2
-            await webNews.CoreWebView2.ExecuteScriptAsync("document.body.innerHTML = '';");
-
-            // Update the label with the title of the web page
-            //lblTitle.Text = await webNews.CoreWebView2.ExecuteScriptAsync("document.title");
-        }
-
     }
 
 }

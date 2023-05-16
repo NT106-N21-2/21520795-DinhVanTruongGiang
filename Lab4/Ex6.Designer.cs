@@ -28,41 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            flowLayoutPanel = new FlowLayoutPanel();
-            webNews = new Microsoft.Web.WebView2.WinForms.WebView2();
-            textURL = new TextBox();
+            txtUrl = new TextBox();
             btnGet = new Button();
             prgBar = new ProgressBar();
-            ((System.ComponentModel.ISupportInitialize)webNews).BeginInit();
+            panelArticles = new Panel();
             SuspendLayout();
             // 
-            // flowLayoutPanel
+            // txtUrl
             // 
-            flowLayoutPanel.AutoScroll = true;
-            flowLayoutPanel.BackColor = SystemColors.ButtonFace;
-            flowLayoutPanel.Location = new Point(13, 53);
-            flowLayoutPanel.Name = "flowLayoutPanel";
-            flowLayoutPanel.Size = new Size(761, 529);
-            flowLayoutPanel.TabIndex = 11;
-            // 
-            // webNews
-            // 
-            webNews.AllowExternalDrop = true;
-            webNews.CreationProperties = null;
-            webNews.DefaultBackgroundColor = Color.White;
-            webNews.Location = new Point(793, 53);
-            webNews.Name = "webNews";
-            webNews.Size = new Size(342, 529);
-            webNews.TabIndex = 10;
-            webNews.Visible = false;
-            webNews.ZoomFactor = 1D;
-            // 
-            // textURL
-            // 
-            textURL.Location = new Point(12, 12);
-            textURL.Name = "textURL";
-            textURL.Size = new Size(647, 27);
-            textURL.TabIndex = 9;
+            txtUrl.Location = new Point(12, 12);
+            txtUrl.Name = "txtUrl";
+            txtUrl.Size = new Size(647, 27);
+            txtUrl.TabIndex = 9;
             // 
             // btnGet
             // 
@@ -82,29 +59,33 @@
             prgBar.TabIndex = 7;
             prgBar.Visible = false;
             // 
+            // panelArticles
+            // 
+            panelArticles.Location = new Point(12, 53);
+            panelArticles.Name = "panelArticles";
+            panelArticles.Size = new Size(762, 529);
+            panelArticles.TabIndex = 11;
+            // 
             // Ex6
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1147, 629);
-            Controls.Add(flowLayoutPanel);
-            Controls.Add(webNews);
-            Controls.Add(textURL);
+            ClientSize = new Size(785, 629);
+            Controls.Add(panelArticles);
+            Controls.Add(txtUrl);
             Controls.Add(btnGet);
             Controls.Add(prgBar);
             Name = "Ex6";
             Text = "Ex6";
-            ((System.ComponentModel.ISupportInitialize)webNews).EndInit();
+            Load += Ex6_Load;
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private FlowLayoutPanel flowLayoutPanel;
-        private Microsoft.Web.WebView2.WinForms.WebView2 webNews;
-        private TextBox textURL;
+        private TextBox txtUrl;
         private Button btnGet;
         private ProgressBar prgBar;
+        private Panel panelArticles;
     }
 }
