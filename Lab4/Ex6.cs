@@ -38,7 +38,7 @@ namespace Lab4
                 Link = link;
             }
         }
-        private void RunProgress()
+        private async Task RunProgress()
         {
             // Thực hiện công việc chạy từ đầu tới cuối
             for (int i = 0; i <= 100; i++)
@@ -47,25 +47,23 @@ namespace Lab4
                 prgBar.Value = i;
 
                 // Dừng một chút để thấy thanh progress chạy
-                Thread.Sleep(100); // Đợi 100 milliseconds (0.1 giây)
+                await Task.Delay(1); // Đợi 1 milliseconds (0.001 giây)
             }
         }
         private async void btnGet_Click(object sender, EventArgs e)
         {
-            prgBar.Maximum = 100;
             prgBar.Visible = true;
-            prgBar.Value = 0;
-            RunProgress();
+            await RunProgress();
             string url = txtUrl.Text;
             if (!string.IsNullOrEmpty(url))
             {
                 btnGet.Enabled = false;
-                LoadWebsite(url);
+                await LoadWebsite(url);
                 btnGet.Enabled = true;
             }
             prgBar.Visible = false;
         }
-        private void LoadWebsite(string url)
+        private async Task LoadWebsite(string url)
         {
             var htmlDoc = htmlWeb.Load(url);
 
@@ -119,7 +117,7 @@ namespace Lab4
                     readMoreLinkLabel.LinkClicked += (sender, e) =>
                     {
                         // Xử lý sự kiện khi nhấp vào liên kết "Read more"
-                        Ex6_WebNews webNews = new Ex6_WebNews(link);
+                        Ex6_WebNews webNews = new Ex6_WebNews(link, title);
                         webNews.ShowDialog();
                         //webNews.CoreWebView2.Navigate(link);
                     };

@@ -51,8 +51,6 @@
             ClientSize = new Size(914, 849);
             Controls.Add(webNews);
             Name = "Ex6_WebNews";
-            Text = "Ex6_WebNews";
-            Load += Ex6_WebNews_Load;
             ((System.ComponentModel.ISupportInitialize)webNews).EndInit();
             ResumeLayout(false);
         }

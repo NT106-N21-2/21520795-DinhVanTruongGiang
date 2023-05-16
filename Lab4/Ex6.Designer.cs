@@ -54,6 +54,7 @@
             // prgBar
             // 
             prgBar.Location = new Point(13, 596);
+            prgBar.MarqueeAnimationSpeed = 10;
             prgBar.Name = "prgBar";
             prgBar.Size = new Size(125, 21);
             prgBar.TabIndex = 7;

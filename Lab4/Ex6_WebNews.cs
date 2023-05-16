@@ -13,21 +13,19 @@ namespace Lab4
 {
     public partial class Ex6_WebNews : Form
     {
-        static string URL;
-        public Ex6_WebNews(string url)
+        static string URL, TITLE;
+        public Ex6_WebNews(string url, string title)
         {
             InitializeComponent();
             InitializeAsync();
             URL = url;
+            TITLE = title.Replace("\n", "");
         }
         private async void InitializeAsync()
         {
             await webNews.EnsureCoreWebView2Async(null);
             webNews.CoreWebView2.Navigate(URL);
-        }
-        private void Ex6_WebNews_Load(object sender, EventArgs e)
-        {
-
+            this.Text =TITLE.ToString();
         }
     }
 }
