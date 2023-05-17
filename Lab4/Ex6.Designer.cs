@@ -62,6 +62,7 @@
             // 
             // panelArticles
             // 
+            panelArticles.AutoScroll = true;
             panelArticles.Location = new Point(12, 53);
             panelArticles.Name = "panelArticles";
             panelArticles.Size = new Size(1119, 529);
@@ -78,7 +79,6 @@
             Controls.Add(prgBar);
             Name = "Ex6";
             Text = "Ex6";
-            Load += Ex6_Load;
             ResumeLayout(false);
             PerformLayout();
         }

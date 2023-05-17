@@ -18,7 +18,7 @@ namespace Lab4
     public partial class Ex6 : Form
     {
         private HtmlWeb htmlWeb;
-        private List<Article> articles;
+        private List<Article> articles; //Lưu thông tin của từng bài báo
         public Ex6()
         {
             InitializeComponent();
@@ -27,6 +27,7 @@ namespace Lab4
         }
         public class Article
         {
+            //Tạo các biến để lưu thông tin Title, Description, Link của từng bài báo
             public string Title { get; set; }
             public string Description { get; set; }
             public string Link { get; set; }
@@ -38,6 +39,7 @@ namespace Lab4
                 Link = link;
             }
         }
+        //Tạo hàm chạy Progress Bar
         private async Task RunProgress()
         {
             // Thực hiện công việc chạy từ đầu tới cuối
@@ -52,21 +54,24 @@ namespace Lab4
         }
         private async void btnGet_Click(object sender, EventArgs e)
         {
-            prgBar.Visible = true;
+            prgBar.Visible = true; //Khi bắt đầu phân tích HTML thì bật Progress Bar lên
             await RunProgress();
             string url = txtUrl.Text;
             if (!string.IsNullOrEmpty(url))
             {
-                btnGet.Enabled = false;
+                btnGet.Enabled = false; //Trong khi phân tích, không cho user sử dụng button Get
                 await LoadWebsite(url);
-                btnGet.Enabled = true;
+                btnGet.Enabled = true; //Bật lại button Get sau khi thực hiện phân tích xong
             }
-            prgBar.Visible = false;
+            prgBar.Visible = false; //Tắt Progress Bar
         }
         private async Task LoadWebsite(string url)
         {
             var htmlDoc = htmlWeb.Load(url);
 
+            //  lấy tất cả các phần tử trong tài liệu HTML
+            //có thuộc tính id="automation_TV0" và đường dẫn xpath là "div[2]/article"
+            //  Đây là mã nguồn của từng bài báo
             var articleNodes = htmlDoc.DocumentNode.SelectNodes("//*[@id=\"automation_TV0\"]/div[2]/article");
 
             // Xóa các Control cũ trong Panel
@@ -102,7 +107,7 @@ namespace Lab4
                     pictureBox.Location = new Point(10, 50); // Điều chỉnh vị trí PictureBox
                     groupBox.Controls.Add(pictureBox);
 
-                    //Tạo Label để hiển thị 
+                    //Tạo Label để hiển thị Title
                     Label titleLabel = new Label();
                     titleLabel.Text = title;
                     titleLabel.Font = new Font(titleLabel.Font.FontFamily, 14, FontStyle.Bold); // Phóng to cỡ chữ
@@ -111,6 +116,7 @@ namespace Lab4
                     titleLabel.Location = new Point(220, 50); // Điều chỉnh vị trí tiêu đề
                     groupBox.Controls.Add(titleLabel);
 
+                    //Tạo Label để hiển thị Description
                     Label descriptionLabel = new Label();
                     descriptionLabel.Text = description;
                     descriptionLabel.AutoSize = true;
@@ -119,6 +125,7 @@ namespace Lab4
                     descriptionLabel.Location = new Point(220, titleLabel.Bottom + 10); // Điều chỉnh vị trí mô tả
                     groupBox.Controls.Add(descriptionLabel);
 
+                    //Tạo Link Label để thêm phần "Read more"
                     LinkLabel readMoreLinkLabel = new LinkLabel();
                     readMoreLinkLabel.Text = "Read more";
                     readMoreLinkLabel.AutoSize = true;
@@ -141,10 +148,6 @@ namespace Lab4
             }
         }
 
-        private async void Ex6_Load(object sender, EventArgs e)
-        {
-            panelArticles.AutoScroll = true;
-        }
     }
 
 }

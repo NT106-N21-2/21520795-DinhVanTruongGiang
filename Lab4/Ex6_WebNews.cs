@@ -25,7 +25,7 @@ namespace Lab4
         {
             await webNews.EnsureCoreWebView2Async(null);
             webNews.CoreWebView2.Navigate(URL);
-            this.Text =TITLE.ToString();
+            this.Text = TITLE.ToString();
         }
     }
 }
