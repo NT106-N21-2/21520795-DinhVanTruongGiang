@@ -78,12 +78,14 @@ namespace Lab4
             {
                 var titleNode = articleNode.SelectSingleNode("./h2/a");
                 var descriptionNode = articleNode.SelectSingleNode("./p");
+                var imageNode = articleNode.SelectSingleNode(".//img");
 
-                if (titleNode != null && descriptionNode != null)
+                if (titleNode != null && descriptionNode != null && imageNode != null)
                 {
                     var title = titleNode.InnerText;
                     var description = descriptionNode.InnerText;
                     var link = titleNode.GetAttributeValue("href", "");
+                    var imageUrl = imageNode.GetAttributeValue("src", "");
 
                     GroupBox groupBox = new GroupBox();
                     groupBox.AutoSize = true;
@@ -92,12 +94,21 @@ namespace Lab4
 
                     panelArticles.Controls.Add(groupBox);
 
+                    // Tạo PictureBox để hiển thị hình ảnh
+                    PictureBox pictureBox = new PictureBox();
+                    pictureBox.ImageLocation = imageUrl;
+                    pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+                    pictureBox.Size = new Size(200, 150);
+                    pictureBox.Location = new Point(10, 50); // Điều chỉnh vị trí PictureBox
+                    groupBox.Controls.Add(pictureBox);
+
+                    //Tạo Label để hiển thị 
                     Label titleLabel = new Label();
                     titleLabel.Text = title;
                     titleLabel.Font = new Font(titleLabel.Font.FontFamily, 14, FontStyle.Bold); // Phóng to cỡ chữ
                     titleLabel.AutoSize = true;
                     titleLabel.MaximumSize = new Size(729 - 20, 0);
-                    titleLabel.Location = new Point(10, 5); // Điều chỉnh vị trí tiêu đề
+                    titleLabel.Location = new Point(220, 50); // Điều chỉnh vị trí tiêu đề
                     groupBox.Controls.Add(titleLabel);
 
                     Label descriptionLabel = new Label();
@@ -105,7 +116,7 @@ namespace Lab4
                     descriptionLabel.AutoSize = true;
                     descriptionLabel.Font = new Font(descriptionLabel.Font.FontFamily, 12);
                     descriptionLabel.MaximumSize = new Size(729 - 20, 0); // Giới hạn kích thước của Label
-                    descriptionLabel.Location = new Point(10, titleLabel.Bottom + 10); // Điều chỉnh vị trí mô tả
+                    descriptionLabel.Location = new Point(220, titleLabel.Bottom + 10); // Điều chỉnh vị trí mô tả
                     groupBox.Controls.Add(descriptionLabel);
 
                     LinkLabel readMoreLinkLabel = new LinkLabel();

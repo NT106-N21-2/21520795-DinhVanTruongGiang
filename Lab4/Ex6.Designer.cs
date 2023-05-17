@@ -38,12 +38,12 @@
             // 
             txtUrl.Location = new Point(12, 12);
             txtUrl.Name = "txtUrl";
-            txtUrl.Size = new Size(647, 27);
+            txtUrl.Size = new Size(1005, 27);
             txtUrl.TabIndex = 9;
             // 
             // btnGet
             // 
-            btnGet.Location = new Point(666, 11);
+            btnGet.Location = new Point(1023, 10);
             btnGet.Name = "btnGet";
             btnGet.Size = new Size(108, 29);
             btnGet.TabIndex = 8;
@@ -64,14 +64,14 @@
             // 
             panelArticles.Location = new Point(12, 53);
             panelArticles.Name = "panelArticles";
-            panelArticles.Size = new Size(762, 529);
+            panelArticles.Size = new Size(1119, 529);
             panelArticles.TabIndex = 11;
             // 
             // Ex6
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(785, 629);
+            ClientSize = new Size(1143, 629);
             Controls.Add(panelArticles);
             Controls.Add(txtUrl);
             Controls.Add(btnGet);
