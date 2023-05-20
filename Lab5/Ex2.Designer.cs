@@ -144,6 +144,7 @@
             Controls.Add(tb_Email);
             Name = "Ex2";
             Text = "Ex2";
+            Load += Ex2_Load;
             ResumeLayout(false);
             PerformLayout();
         }

@@ -42,12 +42,17 @@ namespace Lab5
 
                 }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
-                MessageBox.Show("Invalid email or password!", "Error" , MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Invalid email or password!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tb_Email.Clear();
                 tb_Password.Clear();
             }
+        }
+
+        private void Ex2_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
