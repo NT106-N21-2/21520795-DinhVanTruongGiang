@@ -49,10 +49,5 @@ namespace Lab5
                 tb_Password.Clear();
             }
         }
-
-        private void Ex2_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
