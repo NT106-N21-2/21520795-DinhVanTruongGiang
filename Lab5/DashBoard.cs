@@ -25,8 +25,14 @@ namespace Lab5
 
         private void btn_Ex3_Click(object sender, EventArgs e)
         {
-            Ex3 ex3 = new Ex3();   
+            Ex3 ex3 = new Ex3();
             ex3.ShowDialog();
+        }
+
+        private void btn_Ex1_Click(object sender, EventArgs e)
+        {
+            Ex1 ex1 = new Ex1();
+            ex1.ShowDialog();
         }
     }
 }
