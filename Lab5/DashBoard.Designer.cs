@@ -93,6 +93,7 @@
             btn_Ex1.TabIndex = 6;
             btn_Ex1.Text = "Exercise 1";
             btn_Ex1.UseVisualStyleBackColor = true;
+            btn_Ex1.Click += btn_Ex1_Click;
             // 
             // DashBoard
             // 
