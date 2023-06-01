@@ -158,6 +158,7 @@
             button1.TabIndex = 3;
             button1.Text = "Download All Files";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // Ex4_MailView
             // 

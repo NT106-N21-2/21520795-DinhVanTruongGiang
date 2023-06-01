@@ -147,7 +147,7 @@ namespace Lab5
 
         private void bt_Send_Click(object sender, EventArgs e)
         {
-            Ex4_SendEmail sendMailForm = new Ex4_SendEmail(tb_Username.Text, "", tb_SmtpAddress.Text, tb_Passwd.Text, (int)SMTP_port.Value);
+            Ex4_SendEmail sendMailForm = new Ex4_SendEmail(tb_Username.Text, "", tb_SmtpAddress.Text, tb_Passwd.Text);
             //bt_Log_Click(sender,e);
             sendMailForm.ShowDialog();
         }
@@ -169,7 +169,7 @@ namespace Lab5
             ListViewItem message = listView1.SelectedItems[0];
             int messageID = int.Parse(message.SubItems[0].Text);
             var mailMessage = inbox.GetMessage(inbox.Count - messageID);
-            Ex4_MailView ex4_MailView = new Ex4_MailView(mailMessage);
+            Ex4_MailView ex4_MailView = new Ex4_MailView(mailMessage,tb_SmtpAddress.Text,tb_Passwd.Text);
             ex4_MailView.ShowDialog();
         }
     }

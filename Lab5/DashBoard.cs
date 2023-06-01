@@ -34,5 +34,10 @@ namespace Lab5
             Ex4 ex4 = new Ex4();
             ex4.ShowDialog();
         }
+
+        private void btn_Exit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

@@ -18,13 +18,11 @@ namespace Lab5
     {
         private MailMessage mailMessage;
         private string smtpAddress;
-        private int smtpPort;
         private string passwd = "";
-        public Ex4_SendEmail(string from, string to, string smtpAdd, string pass, int port)
+        public Ex4_SendEmail(string from, string to, string smtpAdd, string pass)
         {
             InitializeComponent();
             tb_From.Text = from;
-            smtpPort = port;
             passwd = pass;
             smtpAddress = smtpAdd;
             if(!string.IsNullOrEmpty(to)) { tb_To.Enabled = false; }
@@ -40,7 +38,7 @@ namespace Lab5
         {
             try
             {
-                SmtpClient smtpClient = new SmtpClient(smtpAddress, smtpPort);
+                SmtpClient smtpClient = new SmtpClient(smtpAddress, 587);
                 smtpClient.UseDefaultCredentials = false;
                 smtpClient.EnableSsl = true;
                 smtpClient.Credentials = new System.Net.NetworkCredential(tb_From.Text, passwd);
