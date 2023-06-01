@@ -187,12 +187,15 @@
             // 
             // listView1
             // 
+            listView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            listView1.FullRowSelect = true;
             listView1.Location = new Point(20, 153);
             listView1.MultiSelect = false;
             listView1.Name = "listView1";
             listView1.Size = new Size(1108, 588);
             listView1.TabIndex = 3;
             listView1.UseCompatibleStateImageBehavior = false;
+            //listView1.SelectedIndexChanged += listView1_SelectedIndexChanged;
             listView1.MouseDoubleClick += listView1_MouseDoubleClick;
             // 
             // SMTP_port
@@ -290,15 +293,15 @@
         private Label label6;
         private Label label7;
         private Label label8;
-        private TextBox tb_Username;
-        private TextBox tb_Passwd;
-        private TextBox tb_SmtpAddress;
+        public TextBox tb_Username;
+        public TextBox tb_Passwd;
+        public TextBox tb_SmtpAddress;
         private TextBox tb_Imap_Address;
         private Button bt_Send;
         private Button bt_Refresh;
         private Button bt_Log;
         private ListView listView1;
-        private NumericUpDown SMTP_port;
+        public NumericUpDown SMTP_port;
         private NumericUpDown IMAP_port;
         private Label page;
         private Button bt_Back;

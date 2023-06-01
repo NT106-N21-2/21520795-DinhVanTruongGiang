@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="MailKit" Version="4.0.0" />
+    <PackageReference Include="microsoft.web.webview2" Version="1.0.1722.45" />
   </ItemGroup>
 
   <ItemGroup>

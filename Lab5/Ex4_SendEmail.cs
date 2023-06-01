@@ -20,13 +20,15 @@ namespace Lab5
         private string smtpAddress;
         private int smtpPort;
         private string passwd = "";
-        public Ex4_SendEmail(string from, string smtpAdd, string pass, int port)
+        public Ex4_SendEmail(string from, string to, string smtpAdd, string pass, int port)
         {
             InitializeComponent();
             tb_From.Text = from;
             smtpPort = port;
             passwd = pass;
             smtpAddress = smtpAdd;
+            if(!string.IsNullOrEmpty(to)) { tb_To.Enabled = false; }
+            tb_To.Text = to;
         }
 
         private void bt_Clear_Click(object sender, EventArgs e)
