@@ -29,7 +29,6 @@ namespace Lab5
             lv_yourMail.Columns.Add("Time", 300);
 
             allEmails = new List<MimeMessage>();
-
         }
 
         private void btn_Login_Click(object sender, EventArgs e)
