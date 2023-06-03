@@ -53,52 +53,62 @@ namespace Lab5
         }
         private void bt_Rep_Click(object sender, EventArgs e)
         {
-            Ex4_SendEmail ex4_SendEmail = new Ex4_SendEmail(Message.To.ToString(), Message.From.ToString(),smtpAddress,passwd);
+            Ex4_SendEmail ex4_SendEmail = new Ex4_SendEmail(Message.To.ToString(), Message.From.ToString(), smtpAddress, passwd);
             ex4_SendEmail.ShowDialog();
         }
 
-        private void bt_Download_Click(object sender, EventArgs e)
+        private async void bt_Download_Click(object sender, EventArgs e)
         {
             if (listBox1.SelectedItems.Count > 0)
             {
                 try
                 {
-                    foreach (var item in Message.Attachments)
+                    FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
+                    DialogResult result = folderBrowser.ShowDialog();
+                    if (result == DialogResult.OK)
                     {
-                        if (item is MimePart mimePart)
-                            if (mimePart.FileName == listBox1.SelectedItem.ToString())
-                            {
-                                var filePath = Path.Combine("C:\\Users\\admin\\Downloads", mimePart.FileName);
-                                using (var stream = File.Create(filePath))
+                        string destinationFolder = folderBrowser.SelectedPath;
+                        foreach (var item in Message.Attachments)
+                        {
+                            if (item is MimePart mimePart)
+                                if (mimePart.FileName == listBox1.SelectedItem.ToString())
                                 {
-                                    mimePart.WriteTo(stream);
+                                    var filePath = Path.Combine(destinationFolder, mimePart.FileName);
+                                    var file = File.Create(filePath);
+                                    await mimePart.Content.DecodeToAsync(file);
+                                    await file.DisposeAsync();
                                 }
-                            }
+                        }
+                        MessageBox.Show("Download successfully!");
                     }
-                    MessageBox.Show("Download successfully!");
                 }
                 catch (Exception ex) { MessageBox.Show(ex.Message); }
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
             if (listBox1.SelectedItems.Count > 0)
             {
                 try
                 {
-                    foreach (var item in Message.Attachments)
+                    FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
+                    DialogResult result = folderBrowser.ShowDialog();
+                    if (result == DialogResult.OK)
                     {
-                        if (item is MimePart mimePart)
+                        string destinationFolder = folderBrowser.SelectedPath;
+                        foreach (var item in Message.Attachments)
                         {
-                            var filePath = Path.Combine("C:\\Users\\admin\\Downloads", mimePart.FileName);
-                            using (var stream = File.Create(filePath))
+                            if (item is MimePart mimePart)
                             {
-                                mimePart.WriteTo(stream);
+                                var filePath = Path.Combine(destinationFolder, mimePart.FileName);
+                                var file = File.Create(filePath);
+                                await mimePart.Content.DecodeToAsync(file);
+                                await file.DisposeAsync();
                             }
                         }
+                        MessageBox.Show("Download successfully!");
                     }
-                    MessageBox.Show("Download successfully!");
                 }
                 catch (Exception ex) { MessageBox.Show(ex.Message); }
             }

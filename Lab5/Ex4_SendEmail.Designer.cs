@@ -126,7 +126,7 @@
             // 
             attachmentListBox.FormattingEnabled = true;
             attachmentListBox.ItemHeight = 22;
-            attachmentListBox.Location = new Point(728, 116);
+            attachmentListBox.Location = new Point(728, 106);
             attachmentListBox.Name = "attachmentListBox";
             attachmentListBox.Size = new Size(358, 532);
             attachmentListBox.TabIndex = 4;

@@ -25,7 +25,7 @@ namespace Lab5
             tb_From.Text = from;
             passwd = pass;
             smtpAddress = smtpAdd;
-            if(!string.IsNullOrEmpty(to)) { tb_To.Enabled = false; }
+            if (!string.IsNullOrEmpty(to)) { tb_To.Enabled = false; }
             tb_To.Text = to;
         }
 
@@ -63,7 +63,7 @@ namespace Lab5
                 }
                 else
                 {
-                    mailMessage.IsBodyHtml = false;                    
+                    mailMessage.IsBodyHtml = false;
                 }
 
                 //đính kèm file
